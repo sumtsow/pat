@@ -15,25 +15,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     @yield('scripts')
     <!-- Styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
     <header>{LANGFORM} {BANNER}</header>
-    <nav class="nav nav-pills justify-content-left">
-	<a class="nav-link active" href="/home/">Home</a>
-	<a class="nav-link" href="/about/">About us</a>
-	<a class="nav-link" href="/services/">Services</a>
-	<a class="nav-link" href="/partners/">Partners</a>
-	<a class="nav-link" href="/customers/">Customers</a>
-	<a class="nav-link" href="/projects/">Projects</a>
-	<a class="nav-link" href="/careers/">Careers</a>
-	<a class="nav-link" href="/contact/">Contact</a>			
-    </nav>
     <div class="heading">
 	<h1>Pat Phy Dep Site</h1>
-    </div>
+    </div>    
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+        </ol>
+    </nav>
     <div class="row">
         <aside class="col-md-3">
             @yield('nav')
@@ -42,8 +36,14 @@
             @yield('content')
         </section>
     </div>
-    <footer>
-        {COUNTERS} <span>&copy; {{ config('app.title.ru')}}, 2015-{{date('Y')}} </span>
+    <footer class="footer">
+        <div class="card border-dark">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    {COUNTERS} &copy; {{ config('app.title.ru')}}, 2015-{{date('Y')}} 
+                </div>
+            </div>
+        </div>
     </footer>    
 </div>
 </body>

@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* 
+    Created on : 26.11.2018, 20:12:25
+    Author     : sumtsow
+*/
+
+@font-face {
+    font-family: "Segoe UI";
+    src: url('/font/segoeui.ttf');
+}
+
+* {
+    font-family: "Segoe UI";
+    font-size: 1rem;
+}
+
+#logo {
+    height: 120px;
+    border: 1px #04231F solid;
+    border-radius: .5rem;
+    box-shadow: 3px 3px 10px #222;
+    background: url("/img/title_ru.jpg") round;
+}
+
+#carousel-inner {
+    border: 1px #04231F solid;
+    border-radius: .5rem;
+    box-shadow:3px 3px 10px #222;
+}
+
+#nav {
+    border: 1px #04231F solid;
+    border-radius: .5rem;
+    box-shadow: 3px 3px 10px #222;
+    background-color: #0D3E38;
+}
+
+#nav a {
+    color: #F1EA7A;
+}
+
+#nav li {
+    border-bottom: solid 1px #1dd9c1;
+}
+
+#breadcrumbs {
+    border: 1px #04231F solid;
+    border-radius: .5rem;
+    box-shadow: 3px 3px 10px #222;
+    background-color: #0D3E38;
+}
+
+#breadcrumbs ol {
+    background-color: #0D3E38;
+}
+
+#breadcrumbs a {
+    color: #F1EA7A;
+}
+
+#foo {
+    height: 22px;
+    padding-top: 2px; 
+    color: #E5FCDA;
+    border-top: 1px #04231F solid;
+    border-right: 1px #04231F solid; 
+    border-left: 1px #04231F solid;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    box-shadow: 3px 3px 10px #222;
+    background: #0D3E38;
+}

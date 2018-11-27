@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row mx-1 my-3" id="logo">@yield('langform')</div>
+    <div class="row mx-1 my-3" id="logo"><img class="w-100 img-fluid rounded" src="/img/title_ru.jpg" />@yield('langform')</div>
     <div class="row mx-1">
         <div id="carouselExampleSlidesOnly" class="carousel w-100 slide border-dark" data-ride="carousel">
             <div class="carousel-inner" id="carousel-inner">
@@ -50,7 +50,7 @@
     </div>
     <div class="row p-3  border-1">    
         <div class="card col-sm-3 border-0 p-0">
-            <nav class="nav" id="nav">
+            <nav class="nav rounded" id="nav">
                 @yield('nav')
             </nav>
         </div>
@@ -63,17 +63,17 @@
                     </ol>
                 </nav>
             </div>
-            <div class="card-body">
+            <div class="card-body justify-content-center">
                 @yield('content')
             </div>
         </div>
     </div>
     <footer class="footer m-0 px-3">
         <div class="row justify-content-center m-0 p-0">        
-            <div class="card w-100 mb-0 border-0 m-0 p-0">
+            <div class="card w-100 mb-2 border-0 m-0 p-0">
                 <div class="card-body m-0 p-0">
                     <div class="row justify-content-center my-0" id="foo">
-                        @yield('counters') &copy; {{ config('app.title.ru')}}, 2015-{{date('Y')}}
+                        <small>@yield('counters') &copy; {{ config('app.title.ru')}}, 2015-{{date('Y')}}</small>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::get('/{page}/{lang?}', 'Controller@index')->name('page');

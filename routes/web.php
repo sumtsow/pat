@@ -15,4 +15,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{page}/{lang?}', 'Controller@index')->name('page');
+Route::get('/{page}', 'Controller@index')->name('page');
+
+/*Route::post('/{page}', 'Controller@store')->name('lang');*/
+
+Route::post('/{page}/setlocale/{locale?}', function (Illuminate\Http\Request $request) {
+    $locale = $request->lang;
+    if (in_array($locale, \Config::get('app.locales'))) {
+    	Session::put('locale', $locale);      
+    }
+    return redirect()->back();   
+});
+

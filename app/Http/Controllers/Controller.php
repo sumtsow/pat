@@ -6,7 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class Controller extends BaseController
 {
@@ -17,17 +17,34 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($page, $lang)
+    public function index($page)
     {
-        $locale = config('app.locale');
-        if($lang !== $locale) {
-            $locale = $lang;
-            config(['app.locale' => $locale]);
+        $locale = \App::getLocale();
+        if(isset($page) && isset($locale)) {
+            return view('page', [
+                'path' => '/storage/html/'.$locale.'/'.$page.'.phtml'
+            ]);
         }
-        $path = '/storage/html/'.$locale.'/'.$page.'.phtml';
-        //$content = Storage::get($path);        
-        return view('page', [
-            'path' => $path
-        ]);
+        else {
+            return view('/index');
+        }
+
     }
+    
+    /**
+     * Switch the language.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $page
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, $page = 'history')
+    {
+        $locale = $request->lang;
+        if (in_array($locale, \Config::get('app.locales'))) {
+            \Session::put('locale', $locale);
+        }
+        return redirect()->back(); 
+    }
+    
 }

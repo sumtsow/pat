@@ -20,35 +20,15 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row mx-1 my-3" id="logo"><img class="w-100 img-fluid rounded" src="/img/title_ru.jpg" />@yield('langform')</div>
-    <div class="row mx-1">
-        <div id="carouselExampleSlidesOnly" class="carousel w-100 slide border-dark" data-ride="carousel">
-            <div class="carousel-inner" id="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="/img/carousel/img01.jpg" alt="Перший слайд">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/carousel/img02.jpg" alt="Другий слайд">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/carousel/img03.jpg" alt="Третій слайд">
-                </div>
-                <div class="carousel-item">
-                <img class="d-block w-100" src="/img/carousel/img04.jpg" alt="Четвертий слайд">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/carousel/img05.jpg" alt="П'ятий слайд">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/carousel/img06.jpg" alt="Шостий слайд">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/carousel/img07.jpg" alt="Сьомий слайд">
-                </div>
-             </div>
-        </div>
+    <div class="row mx-1 my-3" id="logo">
+        <div class="col-sm-12 px-0 mb-0"><img class="w-100 img-fluid rounded" src="/img/title_ru.jpg" /></div>        
+        <div class="col-sm-2 offset-md-10 mb-0" id="lang">@yield('langform')</div>        
+
     </div>
-    <div class="row p-3  border-1">    
+    <div class="row mx-1">
+        @yield('carousel')
+    </div>
+    <div class="row p-3 border-1">    
         <div class="card col-sm-3 border-0 p-0">
             <nav class="nav rounded" id="nav">
                 @yield('nav')

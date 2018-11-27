@@ -22,7 +22,13 @@ body {
     border: 1px #04231F solid;
     border-radius: .5rem;
     box-shadow: 3px 3px 10px #222;
+    /*background: #0D3E38;*/
 }
+
+#lang {
+    margin-top: -40px;
+}
+
 /*#top.uk {
     background: url("/img/title_ua.jpg") no-repeat;
 }
@@ -37,36 +43,20 @@ body {
     background: url("/img/title_ua.jpg") no-repeat;
 }*/
 
-#lang_select {
-    margin: 64px 20px 0 0;
-    height: 40px;
-    text-indent: 0;
-    text-align: right;
-    overflow: visible;
-    padding: 0;
+#lang_form input {
+    font-size: 1.2rem;
 }
 
-#lang_select input {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    margin: 2px;
-    padding: 0;
-    border: none;
-    color: #0D3E38;
-    text-shadow: 1px 1px #FFF;
+#lang_form input.ua {
+    background: url(/img/flag_ua.png) round;
 }
 
-#lang_select input.ua {
-    background: url(/img/flag_ua.png) no-repeat;
+#lang_form input.ru {
+    background: url(/img/flag_ru.png) round;
 }
 
-#lang_select input.ru {
-    background: url(/img/flag_ru.png) no-repeat;
-}
-
-#lang_select input.en {
-    background: url(/img/flag_en.png) no-repeat;
+#lang_form input.en {
+    background: url(/img/flag_en.png) round;
 }
 
 #carousel-inner {

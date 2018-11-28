@@ -5,8 +5,8 @@
     <script src="{{ asset('js/swf.js') }}" type="text/javascript" language="javascript"></script>
 @endsection
 
-@section('langform')
-    @include('langform') 
+@section('lang')
+    @include('lang') 
 @endsection
 
 @section('carousel')

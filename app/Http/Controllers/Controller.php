@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
         
     /**
-     * Display a listing of the resource.
+     * Display a page content from file.
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,14 +22,19 @@ class Controller extends BaseController
         $locale = app()->getLocale();
         $carouselFiles = \Storage::files('/public/img/carousel');
         if($page!='index' && isset($locale)) {
+            $path = '/storage/html/'.$locale.'/'.$page.'.phtml';
+            $content = \Storage::get(str_replace('storage', 'public', $path));
+            $row = explode("</h1>",$content);
+            $pageTitle = str_replace('<h1>', '', $row[0]);
             return view('page', [
-                'path' => '/storage/html/'.$locale.'/'.$page.'.phtml',
-                'carousel' => $carouselFiles,
+                'path' => $path,
+                'carouselFiles' => $carouselFiles,
+                'pageTitle' => $pageTitle,
             ]);
         }
         else {
             return view('/index', [
-                'carousel' => $carouselFiles,
+                'carouselFiles' => $carouselFiles,
             ]);
         }
     }

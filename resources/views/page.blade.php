@@ -4,8 +4,12 @@
     @include('nav') 
 @endsection
 
-@section('langform')
-    @include('langform') 
+@section('breadcrumb')
+    <li class="breadcrumb-item">{{$pageTitle}}</li>
+@endsection
+
+@section('lang')
+    @include('lang') 
 @endsection
 
 @section('carousel')

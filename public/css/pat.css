@@ -29,20 +29,6 @@ body {
     margin-top: -40px;
 }
 
-/*#top.uk {
-    background: url("/img/title_ua.jpg") no-repeat;
-}
-
-
-#top.ru {
-    background: url("/img/title_ru.jpg") no-repeat;
-}
-
-
-#top.en {
-    background: url("/img/title_ua.jpg") no-repeat;
-}*/
-
 #lang a {
     font-size: 1.2rem;
 }
@@ -107,6 +93,7 @@ body {
 
 #breadcrumbs ol {
     background-color: #0D3E38;
+    color: #F1EA7A;
 }
 
 #breadcrumbs a {

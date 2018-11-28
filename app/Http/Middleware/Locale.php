@@ -3,9 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App;
 use Config;
-use Session;
 
 class Locale
 {
@@ -18,12 +16,14 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        $raw_locale = \Crypt::decryptString($request->cookie('locale'));
-        if (in_array($raw_locale, Config::get('app.locales'))) {
-            $locale = $raw_locale;
+        $crypted = $request->cookie('locale');
+        $locale = app()->getLocale();
+        if(isset($crypted)) {
+            $locale = \Crypt::decryptString($crypted);
         }
-        else { $locale = app()->getLocale(); }
-        app()->setLocale($locale);
+        if (in_array($locale, Config::get('app.locales'))) {
+            app()->setLocale($locale);
+        }
         return $next($request);
     }
 }

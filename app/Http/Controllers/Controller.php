@@ -6,7 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class Controller extends BaseController
 {
@@ -17,35 +17,21 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($page)
+    public function index($page = 'index')
     {
         $locale = app()->getLocale();
-        if(isset($page) && isset($locale)) {
+        $carouselFiles = \Storage::files('/public/img/carousel');
+        if($page!='index' && isset($locale)) {
             return view('page', [
-                'path' => '/storage/html/'.$locale.'/'.$page.'.phtml'
+                'path' => '/storage/html/'.$locale.'/'.$page.'.phtml',
+                'carousel' => $carouselFiles,
             ]);
         }
         else {
-            return view('/index');
+            return view('/index', [
+                'carousel' => $carouselFiles,
+            ]);
         }
-
-    }
-    
-    /**
-     * Switch the language.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $page
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $page = 'history')
-    {
-        $locale = $request->lang;
-        if (in_array($locale, \Config::get('app.locales'))) {
-            //\Session::put('locale', $locale);
-            session(['locale' => $locale]);
-        }
-        return redirect()->back(); 
     }
     
 }

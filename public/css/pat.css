@@ -43,19 +43,19 @@ body {
     background: url("/img/title_ua.jpg") no-repeat;
 }*/
 
-#lang_form input {
+#lang a {
     font-size: 1.2rem;
 }
 
-#lang_form input.ua {
+#lang a.ua {
     background: url(/img/flag_ua.png) round;
 }
 
-#lang_form input.ru {
+#lang a.ru {
     background: url(/img/flag_ru.png) round;
 }
 
-#lang_form input.en {
+#lang a.en {
     background: url(/img/flag_en.png) round;
 }
 

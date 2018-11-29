@@ -31,14 +31,16 @@
     <div class="row p-3 border-1">    
         <div class="card col-sm-3 border-0 p-0 bg-transparent">
             <nav class="nav rounded" id="nav">
+                <ul class="nav flex-column">
                 @yield('nav')
+                </ul>
             </nav>
         </div>
         <div class="card col-sm-9 border-0 pl-3 pr-0 bg-transparent">
             <div class="card-header m-0 p-0 border-0" id="breadcrumbs">
                 <nav class="nav my-0 py-0" area-label="breadcrumb">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/">{{ __('navigation.Main')}}</a></li>
                         @yield('breadcrumb')
                     </ol>
                 </nav>
@@ -53,7 +55,7 @@
             <div class="card w-100 mb-2 border-0 m-0 p-0">
                 <div class="card-body m-0 p-0">
                     <div class="row justify-content-center my-0" id="foo">
-                        <small>@yield('counters') &copy; {{ config('app.title.ru')}}, 2015-{{date('Y')}}</small>
+                        <small>@yield('counters') &copy; {{ config('app.title.'.app()->getLocale())}}, 2015-{{date('Y')}}</small>
                     </div>
                 </div>
             </div>

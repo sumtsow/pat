@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/{page?}/setlocale/{locale?}', function ($page = 'index', $locale = 'ua') {
-    if (!in_array($locale, \Config::get('app.locales'))) {
-        $locale = app()->getLocale();
-    }
-    return redirect('/'.$page)->cookie('locale', $locale, 120);;    
-});
+Route::get('/', 'Controller@index')->name('index');
 
-Route::get('/{page?}', 'Controller@index')->name('page');
+Route::get('{page?}', 'Controller@view')->name('page');
+
+Route::get('setlocale/{locale?}', 'Controller@locale')
+        ->where('locale', '[a-z]{2}');
+
+Route::get('{page?}/setlocale/{locale?}', 'Controller@locale')
+        ->where('locale', '[a-z]{2}');
+

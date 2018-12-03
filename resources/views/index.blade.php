@@ -5,6 +5,10 @@
     <script src="{{ asset('js/swf.js') }}" type="text/javascript" language="javascript"></script>
 @endsection
 
+@section('loginform')
+    @include('loginform') 
+@endsection
+
 @section('lang')
     @include('lang') 
 @endsection

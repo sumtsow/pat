@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('loginform')
+    @include('loginform') 
+@endsection
+
 @section('nav')
     @include('nav') 
 @endsection

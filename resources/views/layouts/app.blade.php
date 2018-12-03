@@ -19,6 +19,7 @@
     <link href="{{ asset('css/pat.css') }}" rel="stylesheet">    
 </head>
 <body>
+    @yield('loginform') 
 <div class="container-fluid">
     <div class="row mx-1 my-3" id="logo">
         <div class="col-sm-12 px-0 mb-0"><img class="w-100 img-fluid rounded" src="/img/title_{{app()->getLocale()}}.jpg" /></div>        

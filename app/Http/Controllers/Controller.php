@@ -84,9 +84,12 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function test(Request $request)
+    public function test($locale, Request $request)
     {
-        $locale = app()->getLocale();
+        $locale = $request->locale;
+        if(empty($questions = $request->questions)) {
+            $locale = app()->getLocale();
+        }
         if(empty($questions = $request->questions)) {
             $questions = 30;
         }

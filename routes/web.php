@@ -16,7 +16,11 @@ Route::get('/', 'Controller@index')->name('index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test/', 'Controller@test')->name('test');
+Route::get('test/{locale?}', 'Controller@test')->name('test');
+
+Route::get('gallery', 'AlbumController@index')->name('gallery');
+
+Route::get('gallery/{album?}', 'AlbumController@album')->name('album');
 
 Route::get('pdf/{page?}', 'Controller@pdf')->name('pdf');
 

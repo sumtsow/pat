@@ -20,9 +20,8 @@ class Controller extends BaseController
      */
     public function index()
     {
-        $carouselFiles = \Storage::files('/public/img/carousel');
         return view('index', [
-            'carouselFiles' => $carouselFiles,
+            'carouselFiles' => \Storage::files('/public/img/carousel'),
         ]);
     }
     
@@ -37,7 +36,6 @@ class Controller extends BaseController
             return redirect('/');
         }
         $locale = app()->getLocale();
-        $carouselFiles = \Storage::files('/public/img/carousel');
         $path = '/storage/html/'.$locale.'/'.$page.'.html';
         $exists = Storage::exists(str_replace('storage', 'public', $path));
         if(!$exists) {
@@ -48,7 +46,7 @@ class Controller extends BaseController
         $pageTitle = str_replace('<h1>', '', $row[0]);
         return view('page', [
             'path' => $path,
-            'carouselFiles' => $carouselFiles,
+            'carouselFiles' => \Storage::files('/public/img/carousel'),
             'pageTitle' => $pageTitle,
         ]);
     }
@@ -93,11 +91,10 @@ class Controller extends BaseController
         if(empty($questions = $request->questions)) {
             $questions = 30;
         }
-        $carouselFiles = \Storage::files('/public/img/carousel');
         $path = 'storage/html/'.$locale.'/test.html';
         $doc = simplexml_load_file($path);
         $total_questions = count($doc->p);
-        if($questions>$total_questions) {
+        if($questions > $total_questions) {
             $questions = $total_questions;
         }
         $questions_order = self::rand_select_from_array($questions, $total_questions);
@@ -106,11 +103,11 @@ class Controller extends BaseController
             'questions' => $questions,
             'questions_order' => $questions_order,
             'doc' => $doc,
-            'carouselFiles' => $carouselFiles,
+            'carouselFiles' => \Storage::files('/public/img/carousel'),
         ]);
     }
     
-    static function rand_select_from_array($sel,$total) {
+    static function rand_select_from_array($sel, $total) {
     
         if($sel > $total || $sel < 1 || $total < 1) {
             $result = false;        

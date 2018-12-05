@@ -14,5 +14,5 @@ return [
     */
 
     'list' => 'The Albums List',
-
+    'photos' => 'Photo\'s',
 ];

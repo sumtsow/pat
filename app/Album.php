@@ -16,11 +16,15 @@ class Album
     // @string array Album title, keys are locale's names, e.g. 'en', 'ua', 'ru'
     private $title;
     
+    // @string Album directory
+    private $dir;
+    
     public function __construct($storagePath) 
     {
         $result = false;
         $this->storagePath = $storagePath;   
         $this->path = str_replace('public', 'storage', $storagePath);
+        $this->dir = pathinfo($this->path)['basename'];
         if(Storage::exists($this->storagePath)) {
             $locales = \Config::get('app.locales');
             foreach($locales as $locale) {
@@ -42,7 +46,12 @@ class Album
     
     public function getPhotos() 
     {
-        return $files = \Storage::files($this->storagePath);
+        $files = \Storage::files($this->storagePath);
+        foreach($files as $file) {
+            if(pathinfo($file)['extension'] != 'html')
+            $photos[] = $file;
+        }
+        return $photos;
     }
     
     public function getPhotosNum() 

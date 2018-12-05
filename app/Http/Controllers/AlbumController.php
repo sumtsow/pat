@@ -15,13 +15,12 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $carouselFiles = \Storage::files('/public/img/carousel');
         $dirs = \Storage::directories('/public/img/gallery');
         foreach($dirs as $dir) {
             $albums[] = new \App\Album($dir);
         }
         return view('gallery', [
-            'carouselFiles' => $carouselFiles,
+            'carouselFiles' => \Storage::files('/public/img/carousel'),
             'albums' => $albums,
         ]);
     }
@@ -53,9 +52,18 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($path)
     {
-        //
+        $photos = array();
+        $album = new \App\Album('/public/img/gallery/'.$path);
+        if($album) {
+            $photos = $album->getPhotos();
+        }
+        return view('album.show', [
+            'carouselFiles' => \Storage::files('/public/img/carousel'),
+            'album' => $album,
+            'photos' => $photos,
+        ]);
     }
 
     /**

@@ -16,7 +16,8 @@
     @yield('scripts')
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/pat.css') }}" rel="stylesheet">    
+    <link href="{{ asset('css/pat.css') }}" rel="stylesheet">
+    @yield('styles')
 </head>
 <body>
     @yield('loginform') 

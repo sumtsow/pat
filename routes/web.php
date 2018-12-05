@@ -20,7 +20,7 @@ Route::get('test/{locale?}', 'Controller@test')->name('test');
 
 Route::get('gallery', 'AlbumController@index')->name('gallery');
 
-Route::get('gallery/{album?}', 'AlbumController@album')->name('album');
+Route::get('gallery/{album?}', 'AlbumController@show')->name('album');
 
 Route::get('pdf/{page?}', 'Controller@pdf')->name('pdf');
 

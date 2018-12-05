@@ -15,4 +15,6 @@ return [
 
     'list' => 'The Albums List',
     'photos' => 'Photo\'s',
+    'edit' => 'Edit',
+    'delete' => 'Delete',   
 ];

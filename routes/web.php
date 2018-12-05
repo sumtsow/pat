@@ -16,17 +16,23 @@ Route::get('/', 'Controller@index')->name('index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('test/{locale?}', 'Controller@test')->name('test');
+Route::get('/test/{locale?}', 'Controller@test')->name('test');
 
-Route::get('gallery', 'AlbumController@index')->name('gallery');
+Route::get('/gallery', 'AlbumController@index')->name('gallery');
 
-Route::get('gallery/{album?}', 'AlbumController@show')->name('album');
+Route::get('/gallery/{album?}', 'AlbumController@show')->name('album');
 
-Route::get('pdf/{page?}', 'Controller@pdf')->name('pdf');
+Route::get('/album/create', 'AlbumController@create')->middleware('auth');
+
+Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('auth');
+
+Route::delete('/gallery/{album}', 'AlbumController@destroy')->middleware('auth');
+
+Route::get('/pdf/{page?}', 'Controller@pdf')->name('pdf');
 
 Route::get('{page?}', 'Controller@view')->name('page');
 
-Route::get('password/reset/setlocale/{locale?}', 'Controller@locale')
+Route::get('/password/reset/setlocale/{locale?}', 'Controller@locale')
         ->where('locale', '[a-z]{2}');
 
 Route::get('setlocale/{locale?}', 'Controller@locale')

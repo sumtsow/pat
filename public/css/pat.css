@@ -84,6 +84,10 @@ body {
     background: url("/img/menu_border.jpg") no-repeat bottom;
 }
 
+#nav .dropdown-item:last-of-type {
+    background: #0D3E38;
+}
+
 #breadcrumbs {
     border: 1px #04231F solid;
     border-radius: .5rem;

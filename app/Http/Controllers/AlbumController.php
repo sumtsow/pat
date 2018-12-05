@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Album;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
@@ -19,9 +20,11 @@ class AlbumController extends Controller
         foreach($dirs as $dir) {
             $albums[] = new \App\Album($dir);
         }
+        $user = Auth::user();
         return view('gallery', [
             'carouselFiles' => \Storage::files('/public/img/carousel'),
             'albums' => $albums,
+            'user' => $user,
         ]);
     }
 

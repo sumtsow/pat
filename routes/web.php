@@ -11,9 +11,6 @@
 |
 */
 
-/*use App\User;
-use App\Album;*/
-
 Auth::routes();
 
 Route::get('/', 'Controller@index')->name('index');
@@ -22,7 +19,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test/{locale?}', 'Controller@test')->name('test');
 
-Route::get('/gallery', 'AlbumController@index')->name('gallery')->middleware('can:view,App\Album');
+Route::get('/gallery', 'AlbumController@index')->name('gallery');
+
+Route::get('/admin/gallery', 'AlbumController@index')->name('gallery')->middleware('can:view, App\Album');
 
 Route::get('/gallery/{album?}', 'AlbumController@show')->name('album');
 

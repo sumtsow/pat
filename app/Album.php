@@ -22,10 +22,10 @@ class Album
     public function __construct($storagePath) 
     {
         $result = false;
-        $this->storagePath = $storagePath;   
-        $this->path = str_replace('public', 'storage', $storagePath);
-        $this->dir = pathinfo($this->path)['basename'];
+        $this->storagePath = $storagePath;  
         if(Storage::exists($this->storagePath)) {
+            $this->path = str_replace('public', 'storage', $storagePath);
+            $this->dir = pathinfo($this->path)['basename'];            
             $locales = \Config::get('app.locales');
             foreach($locales as $locale) {
                 $titlePath = $this->storagePath.'/title_'.$locale.'.html';
@@ -34,6 +34,9 @@ class Album
                 }
             }
             $result = true;
+        }
+        else {
+            
         }
         return $result;
     }

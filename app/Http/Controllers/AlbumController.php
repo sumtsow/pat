@@ -20,11 +20,11 @@ class AlbumController extends Controller
         foreach($dirs as $dir) {
             $albums[] = new \App\Album($dir);
         }
-        //$user = Auth::user();
+        $user = Auth::user();
         return view('gallery', [
             'carouselFiles' => \Storage::files('/public/img/carousel'),
             'albums' => $albums,
-            //'user' => $user,
+            'user' => $user,
         ]);
     }
 

@@ -32,6 +32,11 @@
             <div class="card border-light shadow">
                 <div class="card-header">
                     /{{ pathinfo($album->__get('path'))['filename'] }}
+                    @can('view', $album)
+                    <?php $poss = $user->can('view, App\Album') ?? 'empty'; ?>
+                    <a class="float-right ml-1" title="{{__('gallery.delete')}}" href="/gallery/{{ $album->__get('dir') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                    
+                    <a class="float-right" title="{{__('gallery.edit')}}" href="/gallery/{{ $album->__get('dir') }}/edit"><span class="badge badge-primary badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a>
+                    @endcan
                 </div>                
                 <div class="card-body">
                     <a href="/gallery/{{ $album->__get('dir') }}">{{ $album->__get('title')[app()->getLocale()] }}</a>

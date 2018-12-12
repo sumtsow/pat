@@ -75,9 +75,13 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($path)
     {
-        //
+        $album = new \App\Album('/public/img/gallery/'.$path);
+        return view('album.edit', [
+            'carouselFiles' => \Storage::files('/public/img/carousel'),
+            'album' => $album,
+        ]);
     }
 
     /**

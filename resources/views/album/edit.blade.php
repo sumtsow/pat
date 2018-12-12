@@ -31,20 +31,21 @@
 
 @section('content')
 <div class="container">
-    <h1 class="justify-center">{{ $album->__get('title')[app()->getLocale()] }}</h1>     
-    <div class="card-columns">
-        @foreach($photos as $photo)
-        <div class="card border-light shadow">
-            @can('view', $album)
-            <div class="card-header">
-                {{ pathinfo($photo)['basename'] }}
+    <h1 class="justify-center">{{ $album->__get('dir') }}</h1>
+    <form method="post" action="">
+    @csrf  
+    @foreach($album->__get('title') as $locale => $title)        
+        <div class="card mb-3">
+            <div class="card-header">           
+                <h3>{{ __('gallery.title') }}</h3>
+            </div>            
+            <div class="card-body">           
+                <input type="text" class="w-100 border-light" value="{{ $title }}" name="{{ $locale }}" />
             </div>
-            @endcan
-            <a data-fancybox="gallery" href="/storage/img/gallery/{{ $album->__get('dir') }}/{{ pathinfo($photo)['basename'] }}">
-                <img class="card-img-top rounded" src="/storage/img/gallery/{{ $album->__get('dir') }}/{{ pathinfo($photo)['basename'] }}" alt="{{ pathinfo($photo)['filename'] }}" />
-            </a>
-        </div>
-        @endforeach
-    </div>
+        </div>            
+    @endforeach
+        <input type="submit" class="btn btn-success" value="{{ __('gallery.save') }}" name="save" />
+        <input type="button" class="btn btn-warning" value="{{ __('gallery.cancel') }}" name="cancel" />
+    </form>     
 </div>
 @endsection

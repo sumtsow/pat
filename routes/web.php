@@ -21,15 +21,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test/{locale?}', 'Controller@test')->name('test');
 
-Route::get('/gallery', 'AlbumController@index')->name('gallery')/*->middleware('can:view, App\Album')*/;
+Route::get('/gallery', 'AlbumController@index')->name('gallery');
 
 Route::get('/gallery/{album?}', 'AlbumController@show')->name('album');
 
-Route::get('/album/create', 'AlbumController@create')->middleware('auth');
+Route::update('/gallery/{album}', 'AlbumController@update')->middleware('can:view, App\Album');
 
-Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('auth');
+Route::get('/album/create', 'AlbumController@create')->middleware('can:view, App\Album');
 
-Route::delete('/gallery/{album}', 'AlbumController@destroy')->middleware('auth');
+Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('can:view, App\Album');
+
+Route::delete('/gallery/{album}', 'AlbumController@destroy')->middleware('can:view, App\Album');
 
 Route::get('/pdf/{page?}', 'Controller@pdf')->name('pdf');
 

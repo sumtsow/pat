@@ -64,7 +64,7 @@ class Controller extends BaseController
         if (!in_array($locale, \Config::get('app.locales'))) {
             $locale = app()->getLocale();
         }
-        return redirect('/'.$page)->cookie('locale', $locale, 120); 
+        return redirect($page)->cookie('locale', $locale, 120); 
     }
     
     /**

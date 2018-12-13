@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use App\Http\Requests\UpdateAlbum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -16,15 +17,14 @@ class AlbumController extends Controller
      */
     public function index()
     {
+        $albums = array();
         $dirs = \Storage::directories('/public/img/gallery');
         foreach($dirs as $dir) {
             $albums[] = new \App\Album($dir);
         }
-        $user = Auth::user();
         return view('gallery', [
-            'carouselFiles' => \Storage::files('/public/img/carousel'),
             'albums' => $albums,
-            'user' => $user,
+            'user' => Auth::user(),
         ]);
     }
 
@@ -55,17 +55,12 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($path)
+    public function show($dir)
     {
-        $photos = array();
-        $album = new \App\Album('/public/img/gallery/'.$path);
-        if($album) {
-            $photos = $album->getPhotos();
-        }
+        $album = new Album('/public/img/gallery/'.$dir);
         return view('album.show', [
-            'carouselFiles' => \Storage::files('/public/img/carousel'),
             'album' => $album,
-            'photos' => $photos,
+            'photos' => $album->getPhotos(),
         ]);
     }
 
@@ -75,12 +70,11 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($path)
+    public function edit($dir)
     {
-        $album = new \App\Album('/public/img/gallery/'.$path);
         return view('album.edit', [
-            'carouselFiles' => \Storage::files('/public/img/carousel'),
-            'album' => $album,
+            'album' => new \App\Album('/public/img/gallery/'.$dir),
+            'user' => Auth::user(),
         ]);
     }
 
@@ -88,21 +82,18 @@ class AlbumController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $dir
      * @return \Illuminate\Http\Response
      */
-    public function update(Update $request, $album)
+    public function update(UpdateAlbum $request, $dir)
     {
-        $company = \App\Company::find($id);
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->phone = $request->phone;
-        $company->website = $request->website;
-        $company->logo = $request->file('logo')->getClientOriginalName();
-        $request->file('logo')->storeAs('public', $company->logo);
-        $company->save();
-        
-        return redirect('company');
+        $album = new \App\Album('/public/img/gallery/'.$dir);
+        $locales = \Config::get('app.locales');
+        foreach($locales as $locale) {
+            $album->title[$locale] = $request->$locale;
+            //$album->save();          
+        }
+        return redirect('gallery');
     }
 
     /**

@@ -20,9 +20,7 @@ class Controller extends BaseController
      */
     public function index()
     {
-        return view('index', [
-            'carouselFiles' => \Storage::files('/public/img/carousel'),
-        ]);
+        return view('index');
     }
     
     /**
@@ -46,7 +44,6 @@ class Controller extends BaseController
         $pageTitle = str_replace('<h1>', '', $row[0]);
         return view('page', [
             'path' => $path,
-            'carouselFiles' => \Storage::files('/public/img/carousel'),
             'pageTitle' => $pageTitle,
         ]);
     }
@@ -103,7 +100,6 @@ class Controller extends BaseController
             'questions' => $questions,
             'questions_order' => $questions_order,
             'doc' => $doc,
-            'carouselFiles' => \Storage::files('/public/img/carousel'),
         ]);
     }
     

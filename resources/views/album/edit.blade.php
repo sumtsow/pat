@@ -32,10 +32,12 @@
 @section('content')
 <div class="container">
     <h1 class="justify-center">{{ $album->__get('dir') }}</h1>
-    <form method="post" action="">
-    @csrf  
+    <form method="post" action="{{url('gallery/'.$album->__get('dir'))}}">
+    {{csrf_field()}}
+    {{ method_field('put') }}
     @foreach($album->__get('title') as $locale => $title)        
         <div class="card mb-3">
+            @include('errors') 
             <div class="card-header">           
                 <h3>{{ __('gallery.title') }}</h3>
             </div>            
@@ -44,8 +46,8 @@
             </div>
         </div>            
     @endforeach
-        <input type="submit" class="btn btn-success" value="{{ __('gallery.save') }}" name="save" />
-        <input type="button" class="btn btn-warning" value="{{ __('gallery.cancel') }}" name="cancel" />
+        <input type="submit" class="btn btn-success" value="{{ __('gallery.save') }}" />
+        <input type="button" class="btn btn-warning" value="{{ __('gallery.cancel') }}" name="cancel" onclick="history.back();" />
     </form>     
 </div>
 @endsection

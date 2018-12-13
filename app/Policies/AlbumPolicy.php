@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\User;
-use App\Album;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AlbumPolicy
@@ -29,7 +28,7 @@ class AlbumPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -39,9 +38,9 @@ class AlbumPolicy
      * @param  \App\Album  $album
      * @return mixed
      */
-    public function update(User $user, Album $album)
+    public function update(User $user)
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -51,32 +50,8 @@ class AlbumPolicy
      * @param  \App\Album  $album
      * @return mixed
      */
-    public function delete(User $user, Album $album)
+    public function delete(User $user)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the album.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Album  $album
-     * @return mixed
-     */
-    public function restore(User $user, Album $album)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the album.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Album  $album
-     * @return mixed
-     */
-    public function forceDelete(User $user, Album $album)
-    {
-        //
+        return $user->role === 'admin';
     }
 }

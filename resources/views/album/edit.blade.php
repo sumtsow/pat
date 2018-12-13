@@ -40,7 +40,7 @@
                 <h3>{{ __('gallery.title') }}</h3>
             </div>            
             <div class="card-body">           
-                <input type="text" class="w-100 border-light" value="{{ $title }}" name="{{ $locale }}" />
+                <textarea class="form-control" id="{{ $locale }}" name="{{ $locale }}" rows="3">{{ $title }}</textarea>
             </div>
         </div>            
     @endforeach

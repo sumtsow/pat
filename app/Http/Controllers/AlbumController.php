@@ -91,9 +91,18 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $album)
     {
-        //
+        $company = \App\Company::find($id);
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->website = $request->website;
+        $company->logo = $request->file('logo')->getClientOriginalName();
+        $request->file('logo')->storeAs('public', $company->logo);
+        $company->save();
+        
+        return redirect('company');
     }
 
     /**

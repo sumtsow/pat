@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
+    
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Albums.
      *
      * @return \Illuminate\Http\Response
      */
@@ -52,7 +53,7 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $dir
      * @return \Illuminate\Http\Response
      */
     public function show($dir)
@@ -67,7 +68,7 @@ class AlbumController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $dir
      * @return \Illuminate\Http\Response
      */
     public function edit($dir)
@@ -89,6 +90,7 @@ class AlbumController extends Controller
     {
         $album = new \App\Album('/public/img/gallery/'.$dir);
         $locales = \Config::get('app.locales');
+        $user = Auth::user();
         foreach($locales as $locale) {
             $album->title[$locale] = $request->$locale;
             //$album->save();          

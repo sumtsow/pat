@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Pat Dep'),
+    'name' => env('APP_NAME', 'Pat Phy Dep Site'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://pat'),
 
     'asset_url' => env('ASSET_URL', null),
 

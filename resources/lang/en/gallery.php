@@ -19,5 +19,6 @@ return [
     'delete' => 'Delete',
     'save' => 'Save',
     'cancel' => 'Cancel',
-    'title' => 'Album title',    
+    'title' => 'Album title',
+    'new album' => 'New Album',    
 ];

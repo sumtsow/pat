@@ -21,7 +21,7 @@ class AlbumController extends Controller
         $albums = array();
         $dirs = \Storage::directories('/public/img/gallery');
         foreach($dirs as $dir) {
-            $albums[] = new \App\Album($dir);
+            $albums[] = new \App\Album(pathinfo($dir)['basename']);
         }
         return view('gallery', [
             'albums' => $albums,
@@ -36,18 +36,10 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('album.create', [
+            'album' => new \App\Album(),
+            'locales' => \Config::get('app.locales'),
+        ]);
     }
 
     /**
@@ -58,7 +50,7 @@ class AlbumController extends Controller
      */
     public function show($dir)
     {
-        $album = new Album('/public/img/gallery/'.$dir);
+        $album = new Album($dir);
         return view('album.show', [
             'album' => $album,
             'photos' => $album->getPhotos(),
@@ -74,8 +66,7 @@ class AlbumController extends Controller
     public function edit($dir)
     {
         return view('album.edit', [
-            'album' => new \App\Album('/public/img/gallery/'.$dir),
-            'user' => Auth::user(),
+            'album' => new \App\Album($dir),
         ]);
     }
 
@@ -92,10 +83,9 @@ class AlbumController extends Controller
         $locales = \Config::get('app.locales');
         $user = Auth::user();
         foreach($locales as $locale) {
-            $album->title[$locale] = $request->$locale;
-            //$album->save();          
+            $album->setTitle($locale, $request->$locale);
         }
-        return redirect('gallery');
+        return redirect('/gallery');
     }
 
     /**

@@ -46,5 +46,6 @@
             </div>
         @endforeach
     </div>
+    <a class="float-left btn btn-success mt-3" href="/album/create">{{ __('gallery.new album') }}</a>
 </div>
 @endsection

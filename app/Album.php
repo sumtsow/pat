@@ -19,40 +19,63 @@ class Album
     // @string Album directory
     private $dir;
     
-    public function __construct($storagePath) 
+    public function __construct($dir = null) 
     {
-        $result = false;
-        $this->storagePath = $storagePath;  
-        if(Storage::exists($this->storagePath)) {
-            $this->path = str_replace('public', 'storage', $storagePath);
-            $this->dir = pathinfo($this->path)['basename'];            
-            $locales = \Config::get('app.locales');
-            foreach($locales as $locale) {
-                $titlePath = $this->storagePath.'/title_'.$locale.'.html';
-                if(Storage::exists($titlePath)) {
-                    $this->title[$locale] = \Storage::get($titlePath);
-                }
-            }
-            $result = true;
+        if(isset($dir)) {
+            $this->dir = $dir;            
         }
         else {
-            
+            self::newName();
         }
-        return $result;
+        $locales = \Config::get('app.locales');
+        $this->storagePath = '/public/img/gallery/'.$this->dir; 
+        $this->path = str_replace('public', 'storage', $this->storagePath);
+        foreach($locales as $locale) {
+            $titlePath = $this->storagePath.'/title_'.$locale.'.html';
+            if(Storage::exists($titlePath)) {
+                $this->title[$locale] = \Storage::get($titlePath);
+            }
+            else {
+                $this->title[$locale] = '';
+            }        
+        }
+        return true;
     }
 
-    // magic function __get()
+    // @property magic function __get('property')
     public function __get($property) 
     {
         return $this->$property;
     }
     
+    // create new Album directory name
+    public function newName() 
+    {
+        $i = 1;
+        $dir = 'album'.$i;
+        while(Storage::exists('/public/img/gallery/'.$dir)) {
+            $i++;
+            $dir = 'album'.$i;
+        }
+        $this->dir = $dir;
+        return $this->dir;
+    }
+    
+    // write Album title to file
+    public function setTitle($locale, $value) 
+    {
+        return \Storage::put($this->storagePath.'/title_'.$locale.'.html', $value);
+    }
+    
     public function getPhotos() 
     {
-        $files = \Storage::files($this->storagePath);
-        foreach($files as $file) {
-            if(pathinfo($file)['extension'] != 'html')
-            $photos[] = $file;
+        $photos = array();
+        if(self::getPhotosNum()) {
+            $files = \Storage::files($this->storagePath);
+            foreach($files as $file) {
+                if(pathinfo($file)['extension'] != 'html')
+                $photos[] = $file;
+            }            
         }
         return $photos;
     }

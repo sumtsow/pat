@@ -27,9 +27,9 @@ Route::get('{page?}', 'Controller@view')->name('page');
 
 Route::get('/test/{locale?}', 'Controller@test')->name('test');
 
-Route::get('/album/create', 'AlbumController@create')/*->middleware('can:view, App\Album')*/;
+Route::get('/album/create', 'AlbumController@create')->middleware('can:create, App\Album');
 
-Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('can:view, App\Album');
+Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('can:update, App\Album');
 
 Route::put('/gallery/{album}', 'AlbumController@update')->middleware('can:update, App\Album');
 

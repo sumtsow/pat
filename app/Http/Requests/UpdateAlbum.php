@@ -23,9 +23,10 @@ class UpdateAlbum extends FormRequest
      */
     public function rules()
     {
-        return [
-            'ua' => 'required',
-            'ru' => 'required',
-        ];
+        $locales = \Config::get('app.locales');
+        foreach($locales as $locale) {
+            $result[$locale] = 'required';
+        }
+        return $result;
     }
 }

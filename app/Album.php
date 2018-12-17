@@ -55,7 +55,7 @@ class Album
         $dir = 'album'.$i;
         while(Storage::exists('/public/img/gallery/'.$dir)) {
             $i++;
-            $dir = 'album'.$i;
+            $dir = 'album_'.$i;
         }
         $this->dir = $dir;
         return $this->dir;
@@ -67,11 +67,12 @@ class Album
         return \Storage::put($this->storagePath.'/title_'.$locale.'.html', $value);
     }
     
+    // return array of photos
     public function getPhotos() 
     {
         $photos = array();
-        if(self::getPhotosNum()) {
-            $files = \Storage::files($this->storagePath);
+        $files = \Storage::files($this->storagePath);
+        if(isset($files)) {
             foreach($files as $file) {
                 if(pathinfo($file)['extension'] != 'html')
                 $photos[] = $file;
@@ -80,9 +81,16 @@ class Album
         return $photos;
     }
     
+    // return number of photos in the Album
     public function getPhotosNum() 
     {
         return count($this->getPhotos());
+    }
+    
+    // delete the Album
+    public function delete() 
+    {
+        return \Storage::deleteDirectory($this->storagePath);
     }
     
 }

@@ -33,7 +33,7 @@ Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('can:upd
 
 Route::put('/gallery/{album}', 'AlbumController@update')->middleware('can:update, App\Album');
 
-Route::delete('/gallery/{album}', 'AlbumController@destroy')/*->middleware('can:view, App\Album')*/;
+Route::delete('/gallery/{album}', 'AlbumController@destroy')->middleware('can:delete, App\Album');
 
 Route::get('/password/reset/setlocale/{locale?}', 'Controller@locale')
         ->where('locale', '[a-z]{2}');

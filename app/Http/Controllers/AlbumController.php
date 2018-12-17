@@ -79,7 +79,7 @@ class AlbumController extends Controller
      */
     public function update(UpdateAlbum $request, $dir)
     {
-        $album = new \App\Album('/public/img/gallery/'.$dir);
+        $album = new \App\Album($dir);
         $locales = \Config::get('app.locales');
         $user = Auth::user();
         foreach($locales as $locale) {
@@ -91,11 +91,13 @@ class AlbumController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  sting  $dir
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($dir)
     {
-        //
+        $album = new \App\Album($dir);
+        $album->delete();
+        return redirect('/gallery');
     }
 }

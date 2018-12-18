@@ -7,8 +7,9 @@ use App\Http\Requests\UpdateAlbum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller as BaseController;
 
-class AlbumController extends Controller
+class AlbumController extends BaseController
 {
     
     /**
@@ -100,4 +101,15 @@ class AlbumController extends Controller
         $album->delete();
         return redirect('/gallery');
     }
+    
+    /**
+     * Switch the language.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function locale($album, $locale)
+    {
+        return redirect('gallery/'.$album)->cookie('locale', $locale, 120);
+    }
+    
 }

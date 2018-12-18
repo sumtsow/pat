@@ -20,5 +20,9 @@ return [
     'save' => 'Save',
     'cancel' => 'Cancel',
     'title' => 'Album title',
-    'new album' => 'New Album',    
+    'new album' => 'New Album',
+    'completly remove' => 'Completly remove',
+    'yes' => 'Yes',
+    'warning' => 'Warning',
+    'new photo' => 'New photo',
 ];

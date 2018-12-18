@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreatePhoto;
 
 class Album
 {
@@ -48,7 +49,7 @@ class Album
         return $this->$property;
     }
     
-    // create new Album directory name
+    // Create new Album directory name
     public function newName() 
     {
         $i = 1;
@@ -61,13 +62,13 @@ class Album
         return $this->dir;
     }
     
-    // write Album title to file
+    // WRite Album title to file
     public function setTitle($locale, $value) 
     {
         return \Storage::put($this->storagePath.'/title_'.$locale.'.html', $value);
     }
     
-    // return array of photos
+    // Return array of photos
     public function getPhotos() 
     {
         $photos = array();
@@ -81,16 +82,30 @@ class Album
         return $photos;
     }
     
-    // return number of photos in the Album
+    // Return number of photos in the Album
     public function getPhotosNum() 
     {
         return count($this->getPhotos());
     }
     
-    // delete the Album
+    // Delete the Album
     public function delete() 
     {
         return \Storage::deleteDirectory($this->storagePath);
     }
     
+    // Add new photo to Album
+    // @param  \Illuminate\Http\Request  $request
+    public function addPhoto(CreatePhoto $request) 
+    {
+        $filename = $request->file('photo')->getClientOriginalName();
+        return $request->file('photo')->storeAs($this->storagePath, $filename);
+    }
+    
+    // Remove the photo from Album
+    // @param string photo file name
+    public function rmPhoto($photo) 
+    {
+        return \Storage::delete($this->storagePath.'/'.$photo);
+    }    
 }

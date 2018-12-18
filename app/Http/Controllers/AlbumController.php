@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Album;
 use App\Http\Requests\UpdateAlbum;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreatePhoto;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller as BaseController;
@@ -55,6 +56,7 @@ class AlbumController extends BaseController
         return view('album.show', [
             'album' => $album,
             'photos' => $album->getPhotos(),
+            'user' => Auth::user(),
         ]);
     }
 
@@ -101,15 +103,32 @@ class AlbumController extends BaseController
         $album->delete();
         return redirect('/gallery');
     }
-    
+
     /**
-     * Switch the language.
+     * Remove the photo from Album storage.
      *
+     * @param  sting  $dir, $photo
      * @return \Illuminate\Http\Response
      */
-    public function locale($album, $locale)
+    public function delete($dir, $photo)
     {
-        return redirect('gallery/'.$album)->cookie('locale', $locale, 120);
+        $album = new \App\Album($dir);
+        $album->rmPhoto($photo);
+        return redirect('/gallery/'.$album->__get('dir'));
+    }
+
+    /**
+     * Remove the photo from Album storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  sting  $dir
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CreatePhoto $request)
+    {
+        $album = new \App\Album($request->dir);
+        $album->addPhoto($request);
+        return redirect('/gallery/'.$album->__get('dir'));
     }
     
 }

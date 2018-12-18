@@ -53,25 +53,12 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function locale($page = 'index', $locale = 'ua')
+    public function locale($locale = 'ua')
     {
-        if (in_array($page, \Config::get('app.locales'))) {
-            return redirect('/')->cookie('locale', $page, 120);
-        }
         if (!in_array($locale, \Config::get('app.locales'))) {
             $locale = app()->getLocale();
         }
-        return redirect($page)->cookie('locale', $locale, 120); 
-    }
-    
-    /**
-     * View PDF File.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function pdf($page)
-    {
-        return response()->file('storage/pdf/'.$page);
+        return redirect()->back()->cookie('locale', $locale, 120); 
     }
     
     /**

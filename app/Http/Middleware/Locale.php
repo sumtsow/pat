@@ -25,16 +25,6 @@ class Locale
         if (in_array($locale, Config::get('app.locales'))) {
             app()->setLocale($locale);
         }
-        /*$path = $request->path();
-        $input = explode('/', strstr($path, 'setlocale'));
-        $lang = array_pop($input);
-        if(in_array($lang, Config::get('app.locales'))) {
-            $locale = $lang;
-            $url = str_replace('/setlocale/'.$locale, '', $path);
-            app()->setLocale($locale);
-            $request->replace(['path' => $url]);
-            //return redirect($url)->cookie('locale', $locale, 120);
-        }*/
         return $next($request);
     }
 }

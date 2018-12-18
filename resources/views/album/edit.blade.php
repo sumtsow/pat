@@ -39,7 +39,7 @@
     @foreach($album->__get('title') as $locale => $title)        
         <div class="card mb-3">
             <div class="card-header">           
-                <h3>{{ __('gallery.title', [], $locale) }}</h3>
+                <h3>{{ __('gallery.title', [], $locale) }} ({{ $locale }})</h3>
             </div>            
             <div class="card-body">           
                 <textarea class="form-control" id="{{ $locale }}" name="{{ $locale }}" rows="3">{{ $title }}</textarea>

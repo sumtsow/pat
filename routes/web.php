@@ -17,7 +17,7 @@ Auth::routes();
 Route::get('/', 'Controller@index')->name('index');
 
 // Admin Dashboard
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User');
 
 // Albums List
 Route::get('/gallery', 'AlbumController@index')->name('gallery');
@@ -26,7 +26,7 @@ Route::get('/gallery', 'AlbumController@index')->name('gallery');
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 
 // PDF page view
-Route::get('/pdf/{page?}', 'Controller@pdf')->name('pdf');
+Route::get('/pdf/{page?}', 'PdfController@show')->name('pdf');
 
 // HTML page view
 Route::get('{page?}', 'Controller@view')->name('page');
@@ -35,25 +35,23 @@ Route::get('{page?}', 'Controller@view')->name('page');
 Route::get('/test/{locale?}', 'Controller@test')->name('test');
 
 // Album Create Form page
-Route::get('/album/create', 'AlbumController@create')->middleware('can:create, App\Album');
+Route::get('/album/create', 'AlbumController@create')->middleware('can:admin, App\User');
+
+// Photo Create Form action
+Route::post('/photo/create', 'AlbumController@store')->middleware('can:admin, App\User');
 
 // Album Edit Form page
-Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('can:update, App\Album');
+Route::get('/gallery/{album}/edit', 'AlbumController@edit')->middleware('can:admin, App\User');
 
 // Album Update action
-Route::put('/gallery/{album}', 'AlbumController@update')->middleware('can:update, App\Album');
+Route::put('/gallery/{album}', 'AlbumController@update')->middleware('can:admin, App\User');
 
 // Album Delete action
-Route::delete('/gallery/{album}', 'AlbumController@destroy')->middleware('can:delete, App\Album');
+Route::delete('/gallery/{album}', 'AlbumController@destroy')->middleware('can:admin, App\User');
 
-// Password reset Email Form Language switch action
-Route::get('/password/reset/setlocale/{locale?}', 'Controller@locale')
-        ->where('locale', '[a-z]{2}');
+// Photo Delete action
+Route::delete('/gallery/{album}/photo/{photo}', 'AlbumController@delete')->middleware('can:admin, App\User');
 
 //Language switch action
-Route::get('setlocale/{locale?}', 'Controller@locale')
-        ->where('locale', '[a-z]{2}');
-
-// HTML Page Language switch action
-Route::get('{page?}/setlocale/{locale?}', 'Controller@locale')
+Route::get('/setlocale/{locale?}', 'Controller@locale')
         ->where('locale', '[a-z]{2}');

@@ -32,25 +32,25 @@
             <div class="card border-light shadow">
                 <div class="card-header">
                     {{ $album->__get('dir') }}
-                    @can('view', $album)
-                    <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                    
+                    @can('admin', Auth::user())
+                    <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $album->__get('dir') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                    
                     <a class="float-right" title="{{__('gallery.edit')}}" href="/gallery/{{ $album->__get('dir') }}/edit"><span class="badge badge-primary badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a>
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+<div class="modal" id="Modal_{{ $album->__get('dir') }}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Warning</h5>
+        <h5 class="modal-title">{{__('gallery.warning')}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          <p>Are you sure to completly remove Album <b>{{ $album->__get('dir') }}</b></p>
+          <p>{{__('gallery.completly remove')}} <b>{{ $album->__get('dir') }}?</b></p>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">{{__('gallery.cancel')}}</button>
 <form action="/gallery/{{ $album->__get('dir') }}" method="post">        
-    <button type="button" class="btn btn-danger" onclick="this.form.submit();">Yes</button>
+    <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('gallery.yes')}}</button>
 {{csrf_field()}}
 {{method_field('delete')}}
 </form>

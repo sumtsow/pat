@@ -20,7 +20,7 @@
     @yield('styles')
 </head>
 <body>
-    @yield('loginform') 
+@include('loginform') 
 <div class="container-fluid">
     <div class="row mx-1 my-3" id="logo">
         <div class="col-sm-12 px-0 mb-0"><img class="w-100 img-fluid rounded" src="/img/title_{{app()->getLocale()}}.jpg" /></div>        
@@ -32,13 +32,13 @@
 
     </div>
     <div class="row mx-1">
-        @yield('carousel')
+        @include('carousel') 
     </div>
     <div class="row p-3 border-1">    
         <div class="card col-sm-3 border-0 p-0 bg-transparent">
             <nav class="nav rounded" id="nav">
                 <ul class="nav flex-column">
-                @yield('nav')
+                @include('nav')
                 </ul>
             </nav>
         </div>

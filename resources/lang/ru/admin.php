@@ -18,4 +18,7 @@ return [
     'PDF pages admin' => 'Управление PDF файлами',
     'navbar admin' => 'Редактировать панель навигации',
     'change my password' => 'Изменить мой пароль',
+    'pdf list' => 'Список PDF файлов',
+    'new file' => 'Новый PDF файл',
+    'upload' => 'Отправить',
 ];

@@ -8,26 +8,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />@endsection
 
-@section('loginform')
-    @include('loginform') 
-@endsection
-
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="/gallery">{{__('gallery.list')}}</a></li>
     <li class="breadcrumb-item">{{ $album->__get('dir') }}</li>    
 @endsection
 
-@section('nav')
-    @include('nav') 
-@endsection
-
-@section('carousel')
-    @include('carousel') 
-@endsection
-
 @section('content')
 <div class="container">
-    <h1 class="justify-center">{{ $album->__get('title')[app()->getLocale()] }}</h1>
+    <h1 class="justify-center">{{ $album->__get('title')[app()->getLocale()] }} ({{ $album->getPhotosNum() }} {{ __('gallery.photos')}})</h1>
     @can('admin', Auth::user())
     @include('errors')  
     <form action="/photo/create" method="post" enctype="multipart/form-data">
@@ -70,8 +58,8 @@
                 </div>
             </div>
             @endcan
-            <a data-fancybox="gallery" href="{{ $photo->__get('storagePath') }}">
-                <img class="card-img-top rounded" src="{{ $photo->__get('storagePath') }}" alt="{{ $photo->__get('filename') }}" />
+            <a data-fancybox="gallery" href="{{ $photo->__get('path') }}">
+                <img class="card-img-top rounded" src="{{ $photo->__get('path') }}" alt="{{ $photo->__get('filename') }}" />
             </a>
             @can('admin', Auth::user())
             <div class="card-footer">

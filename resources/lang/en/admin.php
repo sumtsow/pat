@@ -18,4 +18,7 @@ return [
     'PDF pages admin' => 'PDF pages administration',
     'navbar admin' => 'Navigation panel administration',
     'change my password' => 'Change my password',
+    'pdf list' => 'PDF Files List',
+    'new file' => 'New PDF File',
+    'upload' => 'Upload',
 ];

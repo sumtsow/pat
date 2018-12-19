@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@section('loginform')
-    @include('loginform') 
-@endsection
-
-@section('nav')
-    @include('nav') 
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

@@ -4,20 +4,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 @endsection
 
-@section('loginform')
-    @include('loginform') 
-@endsection
-
 @section('breadcrumb')
     <li class="breadcrumb-item">{{__('gallery.list')}}</li>
-@endsection
-
-@section('nav')
-    @include('nav') 
-@endsection
-
-@section('carousel')
-    @include('carousel') 
 @endsection
 
 @section('content')
@@ -29,7 +17,7 @@
                 <div class="card-header">
                     {{ $album->__get('dir') }}
                     @can('admin', Auth::user())
-                    <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $album->__get('dir') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                    
+                    <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $album->__get('dir') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                  
                     <a class="float-right" title="{{__('gallery.edit')}}" href="/gallery/{{ $album->__get('dir') }}/edit"><span class="badge badge-primary badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a>
 <div class="modal" id="Modal_{{ $album->__get('dir') }}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

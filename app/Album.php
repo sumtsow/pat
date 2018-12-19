@@ -29,8 +29,8 @@ class Album
             self::newName();
         }
         $locales = \Config::get('app.locales');
-        $this->storagePath = '/public/img/gallery/'.$this->dir; 
-        $this->path = '/storage/img/gallery/'.$this->dir;
+        $this->storagePath = 'public/img/gallery/'.$this->dir; 
+        $this->path = 'storage/img/gallery/'.$this->dir;
         foreach($locales as $locale) {
             $titlePath = $this->storagePath.'/title_'.$locale.'.html';
             if(Storage::exists($titlePath)) {

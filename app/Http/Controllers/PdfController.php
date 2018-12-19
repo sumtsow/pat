@@ -66,36 +66,15 @@ class PdfController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Remove the PDF file from storage.
      *
-     * @param  int  $id
+     * @param  string  $basename
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function destroy($basename)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $pdf = new \App\Pdf($basename);
+        $pdf->delete();
+        return redirect('/pdf/index');
     }
 }

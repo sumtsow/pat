@@ -5,18 +5,6 @@
     <script src="{{ asset('js/swf.js') }}" type="text/javascript" language="javascript"></script>
 @endsection
 
-@section('loginform')
-    @include('loginform') 
-@endsection
-
-@section('carousel')
-    @include('carousel') 
-@endsection
-
-@section('nav')
-    @include('nav') 
-@endsection
-
 @section('content')
 <!-- <div id="myglobe">
     <h1>Alternative content</h1>

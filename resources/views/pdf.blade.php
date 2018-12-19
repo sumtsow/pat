@@ -1,39 +1,53 @@
 @extends('layouts.app')
 
-@section('scripts')
-    <script src="{{ asset('js/swfobject.js') }}" type="text/javascript" language="javascript"></script>
-    <script src="{{ asset('js/swf.js') }}" type="text/javascript" language="javascript"></script>
-@endsection
-
-@section('loginform')
-    @include('loginform') 
-@endsection
-
-@section('carousel')
-    @include('carousel') 
-@endsection
-
-@section('nav')
-    @include('nav') 
+@section('styles')
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 @endsection
 
 @section('content')
+
 <div class="container">
-    <h1 class="text-center">{{ __('pdf.list') }}</h1>  
+    <h1 class="text-center">{{ __('admin.pdf list') }}</h1>  
     @include('errors')  
     <form action="/pdf/create" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
-        <label>{{ __('pdf.new file') }}</label>
+        <label class="h4">{{ __('admin.new file') }} </label>
         <input type="file" name="pdf" id="photo" />
-        <input type="submit" class="btn btn-success my-3" value="{{ __('gallery.new file') }}" />
+        <input type="submit" class="btn btn-success my-3" value="{{ __('admin.upload') }}" />
     </form>
     @foreach($pdffiles as $file)
+    <div class="modal" id="Modal_{{ $file->__get('filename') }}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('gallery.warning')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{__('gallery.completly remove')}} <b>{{ $file->__get('basename') }}?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">{{__('gallery.cancel')}}</button>
+                    <form action="/pdf/delete/{{ $file->__get('basename') }}" method="post">        
+                    <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('gallery.yes')}}</button>
+                    {{csrf_field()}}
+                    {{method_field('delete')}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
     <div class="card mt-3">
-        <div class="card-body">
-            {{ $file->__get('basename') }}
+        <div class="card-body h5">
+            <a target="_blank" href="/storage/pdf/{{ $file->__get('basename') }}">{{ $file->__get('basename') }}</a>
+            <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $file->__get('filename') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>           
         </div>
     </div>
+
     @endforeach
 </div>
+
 @endsection
 

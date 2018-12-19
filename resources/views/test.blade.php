@@ -5,18 +5,6 @@
     <script type="text/javascript" language="javascript">HowManyQuest({{$questions}});</script>
 @endsection
 
-@section('loginform')
-    @include('loginform') 
-@endsection
-
-@section('carousel')
-    @include('carousel') 
-@endsection
-
-@section('nav')
-    @include('nav') 
-@endsection
-
 @section('content')
 
 @foreach($questions_order as $key => $question)

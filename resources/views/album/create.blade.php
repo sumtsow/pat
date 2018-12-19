@@ -8,21 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />  
 @endsection
 
-@section('loginform')
-    @include('loginform') 
-@endsection
-
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="/gallery">{{__('gallery.list')}}</a></li>
     <li class="breadcrumb-item">{{__('gallery.new album')}}</li> 
-@endsection
-
-@section('nav')
-    @include('nav') 
-@endsection
-
-@section('carousel')
-    @include('carousel') 
 @endsection
 
 @section('content')

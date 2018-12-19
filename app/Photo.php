@@ -44,16 +44,16 @@ class Photo
             $path = '/public/img/gallery/'.$album.'/'.$basename;
             $extension = pathinfo($path)['extension'];
             $imagetypes = \Config::get('app.imagetypes');
-            if(Storage::exists($path) && in_array($extension, $imagetypes)) {
+            if(Storage::exists($path) && in_array(strtolower($extension), $imagetypes)) {
                 $this->basename = $basename;
                 $this->album = $album;
                 $this->dirname = '/public/img/gallery/'.$album;
-                $this->path = $path;
-                $this->storagePath = str_replace('public', 'storage', $this->path);
-                $this->filename = pathinfo($this->path)['filename'];
+                $this->storagePath = $path;
+                $this->path = str_replace('public', 'storage', $this->storagePath);
+                $this->filename = pathinfo($this->storagePath)['filename'];
                 $this->extension = $extension;
-                $this->size = round(Storage::size($this->path)/1024);
-                $this->lastModified = Storage::lastModified($this->path);
+                $this->size = round(Storage::size($this->storagePath)/1024);
+                $this->lastModified = Storage::lastModified($this->storagePath);
                 $this->imagetypes = $imagetypes;
                 $result = true;
             }

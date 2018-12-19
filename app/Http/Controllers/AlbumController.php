@@ -27,7 +27,6 @@ class AlbumController extends BaseController
         }
         return view('gallery', [
             'albums' => $albums,
-            'user' => Auth::user(),
         ]);
     }
 
@@ -56,7 +55,6 @@ class AlbumController extends BaseController
         return view('album.show', [
             'album' => $album,
             'photos' => $album->getPhotos(),
-            'user' => Auth::user(),
         ]);
     }
 
@@ -84,7 +82,6 @@ class AlbumController extends BaseController
     {
         $album = new \App\Album($dir);
         $locales = \Config::get('app.locales');
-        $user = Auth::user();
         foreach($locales as $locale) {
             $album->setTitle($locale, $request->$locale);
         }
@@ -118,10 +115,9 @@ class AlbumController extends BaseController
     }
 
     /**
-     * Remove the photo from Album storage.
+     * Create new Photo in Album storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  sting  $dir
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePhoto $request)

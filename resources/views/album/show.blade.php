@@ -21,10 +21,6 @@
     @include('nav') 
 @endsection
 
-@section('lang')
-    @include('lang') 
-@endsection
-
 @section('carousel')
     @include('carousel') 
 @endsection
@@ -47,9 +43,9 @@
         <div class="card border-light shadow">
             @can('admin', Auth::user())
             <div class="card-header">
-                {{ pathinfo($photo)['basename'] }}
-                <a class="float-right" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ pathinfo($photo)['filename'] }}"><span class="badge badge-primary badge-pill"><span class="fa fa-times" aria-hidden="true"></span></span></a>                    
-                <div class="modal" id="Modal_{{ pathinfo($photo)['filename'] }}" tabindex="-1" role="dialog">
+                {{ $photo->__get('basename') }}
+                <a class="float-right" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $photo->__get('filename') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-times" aria-hidden="true"></span></span></a>                    
+                <div class="modal" id="Modal_{{ $photo->__get('filename') }}" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -59,11 +55,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>{{__('gallery.completly remove')}} <b>{{ pathinfo($photo)['basename'] }}?</b></p>
+                                <p>{{__('gallery.completly remove')}} <b>{{ $photo->__get('basename') }}?</b></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">{{__('gallery.cancel')}}</button>
-                                <form action="/gallery/{{ $album->__get('dir') }}/photo/{{ pathinfo($photo)['basename'] }}" method="post">        
+                                <form action="/gallery/{{ $album->__get('dir') }}/photo/{{ $photo->__get('basename') }}" method="post">        
                                 <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('gallery.yes')}}</button>
                                 {{csrf_field()}}
                                 {{method_field('delete')}}
@@ -74,9 +70,15 @@
                 </div>
             </div>
             @endcan
-            <a data-fancybox="gallery" href="/storage/img/gallery/{{ $album->__get('dir') }}/{{ pathinfo($photo)['basename'] }}">
-                <img class="card-img-top rounded" src="/storage/img/gallery/{{ $album->__get('dir') }}/{{ pathinfo($photo)['basename'] }}" alt="{{ pathinfo($photo)['filename'] }}" />
+            <a data-fancybox="gallery" href="{{ $photo->__get('storagePath') }}">
+                <img class="card-img-top rounded" src="{{ $photo->__get('storagePath') }}" alt="{{ $photo->__get('filename') }}" />
             </a>
+            @can('admin', Auth::user())
+            <div class="card-footer">
+                {{ date('d.m.Y h:m:s',$photo->__get('lastModified')) }}, <br/>
+                {{ $photo->__get('size') }} kb
+            </div>
+            @endcan
         </div>
         @endforeach
     </div>

@@ -25,6 +25,12 @@ Route::get('/gallery', 'AlbumController@index')->name('gallery');
 // Album view
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 
+// PDF files list view
+Route::get('/pdf/index', 'PdfController@index')->middleware('can:admin, App\User');
+
+// PDF files list view
+Route::post('/pdf/create', 'PdfController@create')->middleware('can:admin, App\User');
+
 // PDF page view
 Route::get('/pdf/{page?}', 'PdfController@show')->name('pdf');
 

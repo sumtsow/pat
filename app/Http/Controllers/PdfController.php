@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Pdf;
+use App\Http\Requests\CreatePdf;
 use Illuminate\Http\Request;
 
 class PdfController extends Controller
@@ -13,17 +15,26 @@ class PdfController extends Controller
      */
     public function index()
     {
-        //
+        $pdffiles = array();
+        $files = \Storage::files('public/pdf');
+        foreach($files as $file) {
+            $pdffiles[] = new \App\Pdf(pathinfo($file)['basename']);
+        }
+        return view('pdf', [
+            'pdffiles' => $pdffiles,
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Upload new PDF file
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CreatePdf $request)
     {
-        //
+        $pdf = new \App\Pdf($request->file('pdf')->getClientOriginalName());
+        $pdf->addFile($request);
+        return redirect('/pdf/index');
     }
 
     /**
@@ -45,7 +56,13 @@ class PdfController extends Controller
      */
     public function show($page)
     {
-        return response()->file('storage/pdf/'.$page);
+        $exist = \Storage::exists('public/pdf/'.$page);
+        if(isset($page) && $exist) {
+            return response()->file('storage/pdf/'.$page);
+        }
+        else {
+            return redirect()->back();
+        }
     }
 
     /**

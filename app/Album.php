@@ -30,7 +30,7 @@ class Album
         }
         $locales = \Config::get('app.locales');
         $this->storagePath = '/public/img/gallery/'.$this->dir; 
-        $this->path = str_replace('public', 'storage', $this->storagePath);
+        $this->path = '/storage/img/gallery/'.$this->dir;
         foreach($locales as $locale) {
             $titlePath = $this->storagePath.'/title_'.$locale.'.html';
             if(Storage::exists($titlePath)) {
@@ -75,15 +75,17 @@ class Album
         $files = \Storage::files($this->storagePath);
         if(isset($files)) {
             foreach($files as $file) {
-                if(pathinfo($file)['extension'] != 'html')
-                $photos[] = $file;
+                $photo = new Photo($this->dir, pathinfo($file)['basename']);
+                if($photo->__get('basename')) {
+                    $photos[] = $photo;
+                }
             }            
         }
         return $photos;
     }
     
     // Return number of photos in the Album
-    public function getPhotosNum() 
+    public function getPhotosNum()
     {
         return count($this->getPhotos());
     }

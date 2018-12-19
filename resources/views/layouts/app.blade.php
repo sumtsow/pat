@@ -24,7 +24,11 @@
 <div class="container-fluid">
     <div class="row mx-1 my-3" id="logo">
         <div class="col-sm-12 px-0 mb-0"><img class="w-100 img-fluid rounded" src="/img/title_{{app()->getLocale()}}.jpg" /></div>        
-        <div class="col-sm-2 offset-md-10 mb-0" id="lang">@yield('lang')</div>        
+        <div class="col-sm-2 offset-md-10 mb-0" id="lang">
+            @foreach(Config::get('app.locales') as $locale)
+            <a href="/setlocale/{{ $locale }}" class="btn {{ $locale }} border-0 mr-1 p-1 px-2">{{ $locale }}</a>
+            @endforeach
+        </div>        
 
     </div>
     <div class="row mx-1">

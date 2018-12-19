@@ -16,10 +16,6 @@
     @include('nav') 
 @endsection
 
-@section('lang')
-    @include('lang') 
-@endsection
-
 @section('carousel')
     @include('carousel') 
 @endsection

@@ -42,6 +42,7 @@ class Controller extends BaseController
         $content = \Storage::get(str_replace('storage', 'public', $path));
         $row = explode("</h1>",$content);
         $pageTitle = str_replace('<h1>', '', $row[0]);
+        $path = $_SERVER['DOCUMENT_ROOT'].$path ;
         return view('page', [
             'path' => $path,
             'pageTitle' => $pageTitle,

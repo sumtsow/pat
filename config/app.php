@@ -238,5 +238,7 @@ return [
 
     ],
     
-    'siteadmin' => 'sumtsow@gmail.com'
+    'siteadmin' => 'sumtsow@gmail.com',
+    
+    'imagetypes' => ['jpg', 'jpeg', 'png'],
 ];

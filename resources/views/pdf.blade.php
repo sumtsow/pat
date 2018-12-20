@@ -38,14 +38,15 @@
                 </div>
             </div>
         </div>
-    </div>    
-    <div class="card mt-3">
-        <div class="card-body h5">
-            <a target="_blank" href="/storage/pdf/{{ $file->__get('basename') }}">{{ $file->__get('basename') }}</a>
-            <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $file->__get('filename') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>           
+    </div>
+    <div class="card-columns">    
+        <div class="card mt-3">
+            <div class="card-body h5">
+                <a target="_blank" href="/storage/pdf/{{ $file->__get('basename') }}">{{ $file->__get('basename') }}</a>
+                <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $file->__get('filename') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>           
+            </div>
         </div>
     </div>
-
     @endforeach
 </div>
 

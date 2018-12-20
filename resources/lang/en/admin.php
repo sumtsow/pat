@@ -14,7 +14,7 @@ return [
     */
 
     'user admin' => 'Users administration',
-    'add HTML page' => 'Add HTML page',
+    'HTML admin' => 'HTML page administration',
     'PDF pages admin' => 'PDF pages administration',
     'navbar admin' => 'Navigation panel administration',
     'change my password' => 'Change my password',

@@ -89,11 +89,17 @@ class HtmlController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Html  $html
+     * @param  string  $filename
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Html $html)
+    public function destroy($filename)
     {
-        //
+        foreach(\Config::get('app.locales') as $locale) {
+            $page = new Html($locale, $filename);
+            if($page->__get('lastModified')) {
+                $page->delete();
+            }
+        }
+        return redirect('html');
     }
 }

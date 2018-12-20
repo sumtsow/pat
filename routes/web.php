@@ -26,10 +26,13 @@ Route::get('/gallery', 'AlbumController@index')->name('gallery');
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 
 // HTML pages list for Admin
-Route::get('/html', 'HtmlController@index')->middleware('can:admin, App\User');
+Route::get('/html', 'HtmlController@index')->name('html')->middleware('can:admin, App\User');
 
 // new HTML file create form
 Route::get('/html/create', 'HtmlController@create')->middleware('can:admin, App\User');
+
+// delete HTML file action
+Route::delete('/html/{filename}', 'HtmlController@destroy')->middleware('can:admin, App\User');
 
 // new HTML file store action
 Route::post('/html', 'HtmlController@store')->middleware('can:admin, App\User');

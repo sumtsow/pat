@@ -76,6 +76,12 @@ class Html
         return Storage::copy('/public/html/empty.html', $this->storagePath);
     }
     
+    // delete HTML files with same names from all locales
+    public function delete() 
+    {
+        return Storage::delete($this->storagePath);
+    }
+    
     static function getAll() {
         return Storage::files('/public/html/'.app()->getLocale());
     }

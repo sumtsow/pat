@@ -14,7 +14,7 @@ return [
     */
 
     'user admin' => 'Управление пользователями',
-    'HTML pages admin' => 'Управление HTML страницами',
+    'HTML admin' => 'Управление HTML страницами',
     'PDF pages admin' => 'Управление PDF файлами',
     'navbar admin' => 'Редактировать панель навигации',
     'change my password' => 'Изменить мой пароль',

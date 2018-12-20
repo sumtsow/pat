@@ -13,7 +13,7 @@
                         </div>
                     @endif
                     <a href="admin"><h4>{{ __('admin.user admin') }}</h4></a>
-                    <a href="html"><h4>{{ __('admin.add HTML page') }}</h4></a>
+                    <a href="html"><h4>{{ __('admin.HTML admin') }}</h4></a>
                     <a href="pdf/index"><h4>{{ __('admin.PDF pages admin') }}</h4></a>
                     <a href="navbar"><h4>{{ __('admin.navbar admin') }}</h4></a>
                     <a href="me"><h4>{{ __('admin.change my password') }}</h4></a>

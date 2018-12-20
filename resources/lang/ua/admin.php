@@ -14,11 +14,13 @@ return [
     */
 
     'user admin' => 'Управління користувачами',
-    'HTML pages admin' => 'Управління HTML сторінками',
+    'add HTML page' => 'Додати HTML сторінку',
     'PDF pages admin' => 'Управління PDF файлами',
     'navbar admin' => 'Редагувати панель навігації',
     'change my password' => 'Змінити мій пароль',
     'pdf list' => 'Список PDF файлів',
     'new file' => 'Новий PDF файл',
     'upload' => 'Відправити',
+    'new html' => 'Нова HTML сторінка',
+    'filename' => 'Ім\'я файлу (латиницею, без пробілів та крапок)',    
 ];

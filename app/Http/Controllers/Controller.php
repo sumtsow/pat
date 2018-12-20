@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Html;
 
 class Controller extends BaseController
 {
@@ -33,19 +34,12 @@ class Controller extends BaseController
         if(!isset($page)) {
             return redirect('/');
         }
-        $locale = app()->getLocale();
-        $path = '/storage/html/'.$locale.'/'.$page.'.html';
-        $exists = Storage::exists(str_replace('storage', 'public', $path));
-        if(!$exists) {
-            $path = '/storage/html/'.\Config::get('app.fallback_locale').'/'.$page.'.html';
+        $file = new Html(app()->getLocale(), $page);
+        if(!$file->__get('size')) {
+            $file = new Html(\Config::get('app.fallback_locale'), $page);
         }
-        $content = \Storage::get(str_replace('storage', 'public', $path));
-        $row = explode("</h1>",$content);
-        $pageTitle = str_replace('<h1>', '', $row[0]);
-        $path = $_SERVER['DOCUMENT_ROOT'].$path ;
         return view('page', [
-            'path' => $path,
-            'pageTitle' => $pageTitle,
+            'file' => $file,
         ]);
     }
         

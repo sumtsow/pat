@@ -18,7 +18,9 @@ class PdfController extends Controller
         $pdffiles = array();
         $files = \Storage::files('public/pdf');
         foreach($files as $file) {
-            $pdffiles[] = new \App\Pdf(pathinfo($file)['basename']);
+            if(pathinfo($file)['extension'] == 'pdf') {
+                $pdffiles[] = new \App\Pdf(pathinfo($file)['basename']);
+            }
         }
         return view('pdf', [
             'pdffiles' => $pdffiles,

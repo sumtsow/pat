@@ -25,6 +25,15 @@ Route::get('/gallery', 'AlbumController@index')->name('gallery');
 // Album view
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 
+// HTML pages list for Admin
+Route::get('/html', 'HtmlController@index')->middleware('can:admin, App\User');
+
+// new HTML file create form
+Route::get('/html/create', 'HtmlController@create')->middleware('can:admin, App\User');
+
+// new HTML file store action
+Route::post('/html', 'HtmlController@store')->middleware('can:admin, App\User');
+
 // PDF files list view
 Route::get('/pdf/index', 'PdfController@index')->middleware('can:admin, App\User');
 

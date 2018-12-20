@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item">{{$pageTitle}}</li>
+    <li class="breadcrumb-item">{{ $file->__get('pageTitle') }}</li>
 @endsection
 
 @section('content')
-    <?php include($path); ?>
+    {!! $file->__get('content') !!}
 @endsection
 

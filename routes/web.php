@@ -49,8 +49,23 @@ Route::delete('/pdf/delete/{page}', 'PdfController@destroy')->middleware('can:ad
 // PDF page view
 Route::get('/pdf/{page?}', 'PdfController@show')->name('pdf');
 
-// HTML page view
-Route::get('{page?}', 'Controller@view')->name('page');
+// Users list view
+Route::get('/users', 'UserController@index')->name('users')->middleware('can:admin, App\User');
+
+// User edit form
+Route::get('/users/{id}', 'UserController@edit')->middleware('can:admin, App\User');
+
+// User update form
+Route::put('/users/{id}', 'UserController@update')->middleware('can:admin, App\User');
+
+// Users delete action
+Route::delete('/users/{id}', 'UserController@destroy')->middleware('can:admin, App\User');
+
+// Password change form
+Route::get('/me', 'UserController@passwd')->middleware('auth');
+
+// Password change action
+Route::put('/passwd', 'UserController@savepasswd')->middleware('auth');
 
 // Test attempt
 Route::get('/test/{locale?}', 'Controller@test')->name('test');
@@ -72,6 +87,9 @@ Route::delete('/gallery/{album}', 'AlbumController@destroy')->middleware('can:ad
 
 // Photo Delete action
 Route::delete('/gallery/{album}/photo/{photo}', 'AlbumController@delete')->middleware('can:admin, App\User');
+
+// HTML page view
+Route::get('{page?}', 'Controller@view')->name('page');
 
 //Language switch action
 Route::get('/setlocale/{locale?}', 'Controller@locale')

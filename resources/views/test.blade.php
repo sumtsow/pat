@@ -5,6 +5,11 @@
     <script type="text/javascript" language="javascript">HowManyQuest({{$questions}});</script>
 @endsection
 
+@section('breadcrumb')
+<li class="breadcrumb-item text-truncate"><a href="/step">{{ __('test.tests') }}</a></li>
+    <li class="breadcrumb-item text-truncate">{{ __('test.title') }}</li>
+@endsection
+
 @section('content')
 
 @foreach($questions_order as $key => $question)

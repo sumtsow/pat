@@ -23,4 +23,8 @@ return [
     'upload' => 'Upload',
     'new html' => 'New HTML page',
     'filename' => 'File Name (using Latin symbols without spaces or dots)',
+    'Role' => 'Role',
+    'User' => 'User',
+    'id' => 'Identifier',
+    'action' => 'Posiible actions',
 ];

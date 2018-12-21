@@ -52,7 +52,7 @@ class Html
                     $this->lastModified = Storage::lastModified($this->storagePath);
                     $this->content = \Storage::get($this->storagePath);
                     $row = explode("</h1>",$this->content);
-                    $this->pageTitle = str_replace('<h1>', '', $row[0]);
+                    $this->pageTitle = html_entity_decode(strip_tags(str_replace('<h1>', '', $row[0])));
                 }
                 else {
                     $this->size = 0;

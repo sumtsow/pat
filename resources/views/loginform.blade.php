@@ -27,6 +27,11 @@
                         @can('admin', Auth::user())
                         <a class="dropdown-item" href="{{ url('home') }}">{{ __('auth.Dashboard') }}</a>
                         @endcan
+                        @cannot('admin', Auth::user())
+                        @auth
+                        <a class="dropdown-item" href="{{ url('me') }}">{{ __('admin.change my password') }}</a>
+                        @endauth
+                        @endcannot
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('auth.Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>                                    
                     </div>

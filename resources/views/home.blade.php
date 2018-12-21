@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item">{{__('auth.Dashboard')}}</li>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -12,7 +16,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a href="admin"><h4>{{ __('admin.user admin') }}</h4></a>
+                    <a href="/users"><h4>{{ __('admin.user admin') }}</h4></a>
                     <a href="html"><h4>{{ __('admin.HTML admin') }}</h4></a>
                     <a href="pdf/index"><h4>{{ __('admin.PDF pages admin') }}</h4></a>
                     <a href="navbar"><h4>{{ __('admin.navbar admin') }}</h4></a>

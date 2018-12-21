@@ -13,6 +13,7 @@ return [
     */
 
     'title' => 'Integrated Licensed Exam KROK-1',
+    'tests' => 'Tests',
     'answer' => 'Answer',
     'help' => 'Help',
     'hide' => 'Hide',

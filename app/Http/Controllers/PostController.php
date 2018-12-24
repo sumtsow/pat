@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 
-class PostController
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,10 @@ class PostController
      */
     public function index()
     {
-        //
+        //setlocale(LC_TIME, "ru_RU.UTF-8");
+        return view('blog.index', [
+            'posts' => Post::all(),
+        ]);
     }
 
     /**

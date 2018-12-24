@@ -81,7 +81,6 @@ return [
     */
 
     'locale' => 'ua',
-    'locales' => ['ua', 'en', 'ru'],
 
     /*
     |--------------------------------------------------------------------------
@@ -242,5 +241,11 @@ return [
     
     'imagetypes' => ['jpg', 'jpeg', 'png'],
     
-    'posts' => 'comments.xml',
+    'locales' => ['ua', 'en', 'ru'],
+    
+    'timeformat' => [
+        'ua' => 'uk_UA.UTF-8',
+        'en' => 'en_US.UTF-8',
+        'ru' => 'ru_RU.UTF-8',
+    ]
 ];

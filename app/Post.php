@@ -2,78 +2,30 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model;
 
-class Post
+class Post extends Model
 {
-        
-    // @int post id
-    private $id = 0;
+    /**
+    * Set the Model table name
+    *
+    * @var string
+    */
+    protected $table = 'post';
     
-    // @int author id   
-    private $author = 0;
-    
-    // @string post text    
-    private $text = '';
-    
-    // @timestamp post publication time     
-    private $time = 0;
-    
-    // @int post id of parent post; if parent is not exist 
-    private $parent = 0;
-    
-    // @int post id of parent post; if parent is not exist set 0
-    private $parent = 0;
-    
-    // @bool post visiblity
-    private $visible = 0;
-    
-    // @array of string smiles
-    private $smiles = [
-        'biggrin'=>':))',    
-        'smile'=>':)',
-        'razz'=>':P)',
-        'cool'=>':-)',
-        'redface'=>':rf;',
-        'wink'=>';))',
-        'rolleyes'=>':roll;',
-        'confused'=>':((',
-        'eek'=>')-`',
-        'cry'=>'`-(',
-        'angry'=>':+(',
-        'fury'=>':-(',    
-    ];
-
-    public function __construct($id = null) 
-	{ 
-            // Если задан $id
-            if(isset($id)) {
-                $data = $this->readXml();
-                foreach($data as $element) {
-                    if($element['id']==$id) {
-                        $this->id = (isset($element['id'])) ? $element['id'] : null;
-                        $this->author = (isset($element['author'])) ? $element['author'] : null;
-                        $this->text = (isset($element['text'])) ? $element['text'] : null;
-                        $this->time = (isset($element['time'])) ? $element['time'] : null;
-                        $this->parent = (isset($element['parent'])) ? (int) $element['parent'] : null;
-                        $this->visible =  (isset($element['visible'])) ? (bool) $element['visible'] : null;
-                        break;
-                    }
-                }
-                
-
-            }
+    /**
+    * Формат хранения столбцов с датами модели.
+    *
+    * @var string
+    */
+  
+    // @User the Post owner
+    public function user() {
+        return $this->belongsTo('\App\User', 'id_user');
     }
-    
         
-    // Возвращает массив всех сообщений, т.е. читает весь файл XML
-    static function readXml() {
-        try {
-            $xml = new Xml(self::FNAME);
-            return $xml->getData();
-        }
-        catch (Exception $e) {
-            return "Bad XML or not found";
-        } 
-    }   
+    static function my_mb_ucfirst($str) {
+        $fc = mb_strtoupper(mb_substr($str, 0, 1));
+        return $fc.mb_substr($str, 1);
+    }
 }

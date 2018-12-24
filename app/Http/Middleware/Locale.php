@@ -25,6 +25,7 @@ class Locale
         if (in_array($locale, Config::get('app.locales'))) {
             app()->setLocale($locale);
         }
+        setlocale(LC_TIME, Config::get('app.timeformat')[$locale]);
         return $next($request);
     }
 }

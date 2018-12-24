@@ -26,7 +26,7 @@ Route::get('/gallery', 'AlbumController@index')->name('gallery');
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 
 // Album view
-Route::get('/blog', 'PostController@show')->name('blog');
+Route::get('/blog', 'PostController@index')->name('blog');
 
 // HTML pages list for Admin
 Route::get('/html', 'HtmlController@index')->name('html')->middleware('can:admin, App\User');

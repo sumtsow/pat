@@ -241,4 +241,6 @@ return [
     'siteadmin' => 'sumtsow@gmail.com',
     
     'imagetypes' => ['jpg', 'jpeg', 'png'],
+    
+    'posts' => 'comments.xml',
 ];

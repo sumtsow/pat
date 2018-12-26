@@ -16,7 +16,7 @@ class PostController extends Controller
     {
         //setlocale(LC_TIME, "ru_RU.UTF-8");
         return view('blog.index', [
-            'posts' => Post::all(),
+            'posts' => Post::orderBy('created_at', 'desc')->paginate(\App::environment('paginate')),
         ]);
     }
 

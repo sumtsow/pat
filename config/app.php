@@ -247,5 +247,7 @@ return [
         'ua' => 'uk_UA.UTF-8',
         'en' => 'en_US.UTF-8',
         'ru' => 'ru_RU.UTF-8',
-    ]
+    ],
+    
+    'paginate' => 10,
 ];

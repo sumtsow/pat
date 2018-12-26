@@ -9,5 +9,6 @@
         <div class="card-body">{{ $post->text }}</div>
     </div>
     @endforeach
+    <div class="flex-center">{{ $posts->links() }}</div>
 </div>
 @endsection

@@ -34,7 +34,7 @@ class Album
         foreach($locales as $locale) {
             $titlePath = $this->storagePath.'/title_'.$locale.'.html';
             if(Storage::exists($titlePath)) {
-                $this->title[$locale] = \Storage::get($titlePath);
+                $this->title[$locale] = Storage::get($titlePath);
             }
             else {
                 $this->title[$locale] = '';
@@ -65,14 +65,14 @@ class Album
     // WRite Album title to file
     public function setTitle($locale, $value) 
     {
-        return \Storage::put($this->storagePath.'/title_'.$locale.'.html', $value);
+        return Storage::put($this->storagePath.'/title_'.$locale.'.html', $value);
     }
     
     // Return array of photos
     public function getPhotos() 
     {
         $photos = array();
-        $files = \Storage::files($this->storagePath);
+        $files = Storage::files($this->storagePath);
         if(isset($files)) {
             foreach($files as $file) {
                 $photo = new Photo($this->dir, pathinfo($file)['basename']);
@@ -93,7 +93,7 @@ class Album
     // Delete the Album
     public function delete() 
     {
-        return \Storage::deleteDirectory($this->storagePath);
+        return Storage::deleteDirectory($this->storagePath);
     }
     
     // Add new photo to Album
@@ -108,6 +108,6 @@ class Album
     // @param string photo file name
     public function rmPhoto($photo) 
     {
-        return \Storage::delete($this->storagePath.'/'.$photo);
+        return Storage::delete($this->storagePath.'/'.$photo);
     }    
 }

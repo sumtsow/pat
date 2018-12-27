@@ -21,9 +21,9 @@ class AlbumController extends BaseController
     public function index()
     {
         $albums = array();
-        $dirs = \Storage::directories('/public/img/gallery');
+        $dirs = Storage::directories('/public/img/gallery');
         foreach($dirs as $dir) {
-            $albums[] = new \App\Album(pathinfo($dir)['basename']);
+            $albums[] = new Album(pathinfo($dir)['basename']);
         }
         return view('gallery', [
             'albums' => $albums,
@@ -38,7 +38,7 @@ class AlbumController extends BaseController
     public function create()
     {
         return view('album.create', [
-            'album' => new \App\Album(),
+            'album' => new Album(),
             'locales' => \Config::get('app.locales'),
         ]);
     }
@@ -67,7 +67,7 @@ class AlbumController extends BaseController
     public function edit($dir)
     {
         return view('album.edit', [
-            'album' => new \App\Album($dir),
+            'album' => new Album($dir),
         ]);
     }
 
@@ -80,7 +80,7 @@ class AlbumController extends BaseController
      */
     public function update(UpdateAlbum $request, $dir)
     {
-        $album = new \App\Album($dir);
+        $album = new Album($dir);
         $locales = \Config::get('app.locales');
         foreach($locales as $locale) {
             $album->setTitle($locale, $request->$locale);
@@ -96,7 +96,7 @@ class AlbumController extends BaseController
      */
     public function destroy($dir)
     {
-        $album = new \App\Album($dir);
+        $album = new Album($dir);
         $album->delete();
         return redirect('/gallery');
     }
@@ -109,7 +109,7 @@ class AlbumController extends BaseController
      */
     public function delete($dir, $photo)
     {
-        $album = new \App\Album($dir);
+        $album = new Album($dir);
         $album->rmPhoto($photo);
         return redirect('/gallery/'.$album->__get('dir'));
     }
@@ -122,7 +122,7 @@ class AlbumController extends BaseController
      */
     public function store(CreatePhoto $request)
     {
-        $album = new \App\Album($request->dir);
+        $album = new Album($request->dir);
         $album->addPhoto($request);
         return redirect('/gallery/'.$album->__get('dir'));
     }

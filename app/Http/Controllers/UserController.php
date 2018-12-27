@@ -6,7 +6,6 @@ use App\User;
 use App\Http\Requests\UpdateUser;
 use App\Http\Requests\UpdatePassword;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePdf extends FormRequest
+class UpdatePost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CreatePdf extends FormRequest
     public function rules()
     {
         return [
-            'pdf' => 'required|file',
+            'visible' => 'required',
         ];
     }
 }

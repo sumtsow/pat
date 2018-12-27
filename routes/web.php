@@ -25,8 +25,17 @@ Route::get('/gallery', 'AlbumController@index')->name('gallery');
 // Album view
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 
-// Album view
+// Posts view
 Route::get('/blog', 'PostController@index')->name('blog');
+
+// Post visiblity update
+Route::put('/blog/{id}', 'PostController@update')->middleware('can:admin, App\User');
+
+// Post store
+Route::post('/blog', 'PostController@store')->middleware('auth');
+
+// Post delete
+Route::delete('/blog/{id}', 'PostController@destroy')->middleware('can:admin, App\User');
 
 // HTML pages list for Admin
 Route::get('/html', 'HtmlController@index')->name('html')->middleware('can:admin, App\User');

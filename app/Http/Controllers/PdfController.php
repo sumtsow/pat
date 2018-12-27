@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pdf;
 use App\Http\Requests\CreatePdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PdfController extends Controller
 {
@@ -16,10 +17,10 @@ class PdfController extends Controller
     public function index()
     {
         $pdffiles = array();
-        $files = \Storage::files('public/pdf');
+        $files = Storage::files('public/pdf');
         foreach($files as $file) {
             if(pathinfo($file)['extension'] == 'pdf') {
-                $pdffiles[] = new \App\Pdf(pathinfo($file)['basename']);
+                $pdffiles[] = new Pdf(pathinfo($file)['basename']);
             }
         }
         return view('pdf', [
@@ -34,7 +35,7 @@ class PdfController extends Controller
      */
     public function create(CreatePdf $request)
     {
-        $pdf = new \App\Pdf($request->file('pdf')->getClientOriginalName());
+        $pdf = new Pdf($request->file('pdf')->getClientOriginalName());
         $pdf->addFile($request);
         return redirect('/pdf/index');
     }
@@ -58,7 +59,7 @@ class PdfController extends Controller
      */
     public function show($page)
     {
-        $exist = \Storage::exists('public/pdf/'.$page);
+        $exist = Storage::exists('public/pdf/'.$page);
         if(isset($page) && $exist) {
             return response()->file('storage/pdf/'.$page);
         }
@@ -75,7 +76,7 @@ class PdfController extends Controller
      */
     public function destroy($basename)
     {
-        $pdf = new \App\Pdf($basename);
+        $pdf = new Pdf($basename);
         $pdf->delete();
         return redirect('/pdf/index');
     }

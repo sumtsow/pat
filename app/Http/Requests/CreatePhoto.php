@@ -24,7 +24,7 @@ class CreatePhoto extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required',
+            'photo' => 'required|file',
         ];
     }
 }

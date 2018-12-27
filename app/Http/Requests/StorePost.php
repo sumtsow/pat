@@ -24,7 +24,7 @@ class StorePost extends FormRequest
     public function rules()
     {
         return [
-            //
+            'text' => 'max:65535|required|string',
         ];
     }
 }

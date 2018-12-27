@@ -24,7 +24,7 @@ class Post extends Model
         return $this->belongsTo('\App\User', 'id_user');
     }
         
-    static function my_mb_ucfirst($str) {
+    static function mbt_ucfirst($str) {
         $fc = mb_strtoupper(mb_substr($str, 0, 1));
         return $fc.mb_substr($str, 1);
     }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,65 +16,46 @@ class PostController extends Controller
      */
     public function index()
     {
-        //setlocale(LC_TIME, "ru_RU.UTF-8");
+        $posts = Post::orderBy('created_at', 'desc')->paginate(\App::environment('paginate'));
         return view('blog.index', [
-            'posts' => Post::orderBy('created_at', 'desc')->paginate(\App::environment('paginate')),
+            'posts' => $posts,
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePost  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
+        $post = new Post;
+        $post->id_user = Auth::id();
+        $post->id_parent = 0;
+        $post->text = $request->text;
+        $post->visible = 1;
+        $post->created_at = date("Y-m-d H:i:s");
+        $post->updated_at = date("Y-m-d H:i:s");
+        $post->save();
+        return redirect('blog');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\Http\Requests\UpdatePost  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePost $request, $id)
     {
-        //
+        $visible = $request->visible;
+        $post = Post::find($id);
+        $post->visible = !$post->visible;
+        $post->updated_at = date("Y-m-d H:i:s");
+        $post->save();
+        return redirect('blog');
     }
 
     /**
@@ -81,8 +64,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('blog');
     }
 }

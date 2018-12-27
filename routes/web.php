@@ -25,11 +25,11 @@ Route::get('/gallery', 'AlbumController@index')->name('gallery');
 // Album view
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 
+// Post visiblity update
+Route::get('/blog/check/{id}', 'PostController@update')->middleware('can:admin, App\User');
+
 // Posts view
 Route::get('/blog', 'PostController@index')->name('blog');
-
-// Post visiblity update
-Route::put('/blog/{id}', 'PostController@update')->middleware('can:admin, App\User');
 
 // Post store
 Route::post('/blog', 'PostController@store')->middleware('auth');

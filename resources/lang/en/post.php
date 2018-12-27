@@ -15,5 +15,7 @@ return [
 
     'add' => 'Add message',
     'from' => 'from',
-    'message' => 'message',    
+    'message' => 'message',
+    'visible' => 'Visible',
+    'invisible' => 'Invisible',    
 ];

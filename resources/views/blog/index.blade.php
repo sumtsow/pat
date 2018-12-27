@@ -11,13 +11,14 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">{{ __('post.add') }}</button>
     @endauth
     @foreach($posts as $post)
-    @if($post->visible || Auth::user()->can('admin', \App\User::class))
+<!-- Comment # {{$post->id}} -->
     <div class="card w-100 mt-3 border-light rounded shadow">
         <div class="card-header bg-dark text-light">
             {{ $post->user->name }} - {{ \App\Post::mbt_ucfirst(strftime("%A, %e %B %Y %H:%M", $post->created_at->getTimestamp())) }}
             @can('admin', Auth::user())
-<form method="post" action="/blog/{{$post->id}}">{{csrf_field()}}<input name="visible" type="checkbox" @if($post->visible) checked="checked" @endif onChange="this.form.submit();" />{{ method_field('put')}}</form>            
-            <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $post->id }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                      @endcan
+<a class="float-right ml-1" title="{{ __('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $post->id }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>
+<a class="float-right ml-1" title="@if($post->visible) {{ __('post.visible')}} @else {{ __('post.invisible')}} @endif" href="/blog/check/{{ $post->id }}"><span class="badge badge-primary badge-pill"><span class="fa @if($post->visible) fa-eye @else fa-eye-slash @endif" aria-hidden="true"></span></span></a>
+            @endcan
         </div>
         <div class="card-body">{{ $post->text }}</div>
     </div>
@@ -46,8 +47,8 @@
   </div>
 </div>
     @endcan
-    @endif
     @endforeach
+    <!-- End of comments -->
     <div class="flex-center">{{ $posts->links() }}</div>
 </div>
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog">

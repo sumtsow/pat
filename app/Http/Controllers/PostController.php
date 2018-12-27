@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Http\Requests\StorePost;
-use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -16,7 +15,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(\App::environment('paginate'));
+        if(!Auth::user()) {
+            $posts = Post::orderBy('created_at', 'desc')
+                    ->where('visible', true)
+                    ->paginate(\App::environment('paginate'));            
+        }
+        elseif(Auth::user()->can('admin', \App\User::class)) {
+            $posts = Post::orderBy('created_at', 'desc')->paginate(\App::environment('paginate'));
+            }
+        else {
+            $posts = Post::orderBy('created_at', 'desc')
+                    ->where('visible', true)
+                    ->paginate(\App::environment('paginate'));    
+        }
         return view('blog.index', [
             'posts' => $posts,
         ]);
@@ -44,13 +55,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePost  $request
-     * @param  int  $id
+     * @param  int id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePost $request, $id)
+    public function update($id)
     {
-        $visible = $request->visible;
         $post = Post::find($id);
         $post->visible = !$post->visible;
         $post->updated_at = date("Y-m-d H:i:s");

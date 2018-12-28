@@ -9,27 +9,28 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of visible comments.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        if(!Auth::user()) {
-            $posts = Post::orderBy('created_at', 'desc')
-                    ->where('visible', true)
-                    ->paginate(\App::environment('paginate'));            
-        }
-        elseif(Auth::user()->can('admin', \App\User::class)) {
-            $posts = Post::orderBy('created_at', 'desc')->paginate(\App::environment('paginate'));
-            }
-        else {
-            $posts = Post::orderBy('created_at', 'desc')
-                    ->where('visible', true)
-                    ->paginate(\App::environment('paginate'));    
-        }
         return view('blog.index', [
-            'posts' => $posts,
+            'posts' => Post::orderBy('created_at', 'desc')
+                        ->where('visible', true)
+                        ->paginate(\App::environment('paginate')),
+        ]);
+    }
+    
+    /**
+     * Display a listing of all comments.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        return view('blog.show', [
+            'posts' => Post::orderBy('created_at', 'desc')->paginate(\App::environment('paginate')),
         ]);
     }
 
@@ -64,7 +65,7 @@ class PostController extends Controller
         $post->visible = !$post->visible;
         $post->updated_at = date("Y-m-d H:i:s");
         $post->save();
-        return redirect('blog');
+        return redirect('blogadmin');
     }
 
     /**
@@ -77,6 +78,6 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('blog');
+        return redirect('blogadmin');
     }
 }

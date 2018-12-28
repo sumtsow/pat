@@ -28,8 +28,11 @@ Route::get('/gallery/{album}', 'AlbumController@show')->name('album');
 // Post visiblity update
 Route::get('/blog/check/{id}', 'PostController@update')->middleware('can:admin, App\User');
 
+// Posts admin view
+Route::get('/blogadmin', 'PostController@show')->middleware('can:admin, App\User')->name('blogadmin');
+
 // Posts view
-Route::get('/blog', 'PostController@index')->name('blog');
+Route::get('/blog', 'PostController@index')->name('blog')->middleware('isAdmin');
 
 // Post store
 Route::post('/blog', 'PostController@store')->middleware('auth');

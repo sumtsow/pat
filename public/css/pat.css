@@ -115,3 +115,8 @@ body {
     box-shadow: 3px 3px 10px #222;
     background: #0D3E38;
 }
+
+.card-header {
+     background-color: #0D3E38;
+     color: #F1EA7A;
+}

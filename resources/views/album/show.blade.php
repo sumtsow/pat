@@ -32,21 +32,21 @@
             @can('admin', Auth::user())
             <div class="card-header">
                 {{ $photo->__get('basename') }}
-                <a class="float-right" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $photo->__get('filename') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-times" aria-hidden="true"></span></span></a>                    
+                <a class="float-right" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $photo->__get('filename') }}"><span class="badge badge-light badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                    
                 <div class="modal" id="Modal_{{ $photo->__get('filename') }}" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header text-dark">
                                 <h5 class="modal-title">{{__('gallery.warning')}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body text-dark">
                                 <p>{{__('gallery.completly remove')}} <b>{{ $photo->__get('basename') }}?</b></p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">{{__('gallery.cancel')}}</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">{{__('gallery.cancel')}}</button>
                                 <form action="/gallery/{{ $album->__get('dir') }}/photo/{{ $photo->__get('basename') }}" method="post">        
                                 <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('gallery.yes')}}</button>
                                 {{csrf_field()}}

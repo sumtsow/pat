@@ -7,14 +7,14 @@
 @section('content')
 <div class="container">
     <h1 class="justify-center">{{ __('navigation.Guestbook')}}</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">{{ __('post.add') }}</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal">{{ __('post.add') }}</button>
 @foreach($posts as $post)
 <!-- Comment # {{$post->id}} -->
     <div class="card w-100 mt-3 border-light rounded shadow">
-        <div class="card-header bg-dark text-light">
+        <div class="card-header">
             {{ $post->user->name }} - {{ \App\Post::mbt_ucfirst(strftime("%A, %e %B %Y %H:%M", $post->created_at->getTimestamp())) }}
-<a class="float-right ml-1" title="{{ __('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $post->id }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>
-<a class="float-right ml-1" title="@if($post->visible) {{ __('post.visible')}} @else {{ __('post.invisible')}} @endif" href="/blog/check/{{ $post->id }}"><span class="badge badge-primary badge-pill"><span class="fa @if($post->visible) fa-eye @else fa-eye-slash @endif" aria-hidden="true"></span></span></a>
+<a class="float-right ml-1" title="{{ __('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $post->id }}"><span class="badge badge-light badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>
+<a class="float-right ml-1" title="@if($post->visible) {{ __('post.visible')}} @else {{ __('post.invisible')}} @endif" href="/blog/check/{{ $post->id }}"><span class="badge badge-light badge-pill"><span class="fa @if($post->visible) fa-eye @else fa-eye-slash @endif" aria-hidden="true"></span></span></a>
         </div>
         <div class="card-body">{{ $post->text }}</div>
     </div>

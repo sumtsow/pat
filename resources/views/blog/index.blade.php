@@ -12,7 +12,7 @@
     @endauth
     @foreach($posts as $post)
     <div class="card w-100 mt-3 border-light rounded shadow">
-        <div class="card-header bg-dark text-light">
+        <div class="card-header">
             {{ $post->user->name }} - {{ \App\Post::mbt_ucfirst(strftime("%A, %e %B %Y %H:%M", $post->created_at->getTimestamp())) }}
         </div>
         <div class="card-body">{{ $post->text }}</div>

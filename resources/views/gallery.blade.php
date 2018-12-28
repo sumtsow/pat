@@ -17,8 +17,8 @@
                 <div class="card-header">
                     {{ $album->__get('dir') }}
                     @can('admin', Auth::user())
-                    <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $album->__get('dir') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                  
-                    <a class="float-right" title="{{__('gallery.edit')}}" href="/gallery/{{ $album->__get('dir') }}/edit"><span class="badge badge-primary badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a>
+                    <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $album->__get('dir') }}"><span class="badge badge-light badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                  
+                    <a class="float-right" title="{{__('gallery.edit')}}" href="/gallery/{{ $album->__get('dir') }}/edit"><span class="badge badge-light badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a>
 <div class="modal" id="Modal_{{ $album->__get('dir') }}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

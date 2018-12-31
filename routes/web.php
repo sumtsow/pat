@@ -46,6 +46,12 @@ Route::get('/html', 'HtmlController@index')->name('html')->middleware('can:admin
 // new HTML file create form
 Route::get('/html/create', 'HtmlController@create')->middleware('can:admin, App\User');
 
+// edit HTML file form
+Route::get('/html/{filename}/edit/{saved?}', 'HtmlController@edit')->middleware('can:admin, App\User')->name('htmleditor');
+
+// update HTML file action
+Route::put('/html/{filename}', 'HtmlController@update')->middleware('can:admin, App\User');
+
 // delete HTML file action
 Route::delete('/html/{filename}', 'HtmlController@destroy')->middleware('can:admin, App\User');
 

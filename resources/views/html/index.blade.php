@@ -12,8 +12,8 @@
         <div class="card mb-3">
             <div class="card-body">
                 <a href="{{ pathinfo($file)['filename'] }}">{{ pathinfo($file)['filename'] }}</a>
-                <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ pathinfo($file)['filename'] }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                  
-                <a class="float-right" title="{{__('gallery.edit')}}" href="/html/{{ pathinfo($file)['filename'] }}/edit"><span class="badge badge-primary badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a>
+                <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ pathinfo($file)['filename'] }}"><span class="badge badge-light badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>                  
+                <a class="float-right" title="{{__('gallery.edit')}}" href="/html/{{ pathinfo($file)['filename'] }}/edit"><span class="badge badge-light badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a>
             </div>
         </div>
 <div class="modal" id="Modal_{{ pathinfo($file)['filename'] }}" tabindex="-1" role="dialog">

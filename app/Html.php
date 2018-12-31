@@ -64,7 +64,7 @@ class Html
         return $result;
     }
     
-    // @property magic function __get('property')
+    // @property magic function __get(property)
     public function __get($property) 
     {
         return $this->$property;
@@ -75,6 +75,18 @@ class Html
     {
         return Storage::copy('/public/html/empty.html', $this->storagePath);
     }
+    
+    // @property magic function __set(property, value)
+    public function __set($property, $value) 
+    {
+        return $this->$property = $value;
+    }
+    
+    // update HTML file
+    public function update() 
+    {
+        return Storage::put($this->storagePath, $this->content);
+    }  
     
     // delete HTML files with same names from all locales
     public function delete() 

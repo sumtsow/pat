@@ -5,6 +5,10 @@
 @endsection
 
 @section('content')
+    @can('admin', Auth::user())
+    <a href="/html/{{ $file->__get('filename')}}/edit" class="btn btn-danger float-right" title="{{__('gallery.edit')}}" >{{__('gallery.edit')}}</a>
+    @endcan
+    <br />
     {!! $file->__get('content') !!}
 @endsection
 

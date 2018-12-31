@@ -27,4 +27,8 @@ return [
     'User' => 'User',
     'id' => 'Identifier',
     'action' => 'Posiible actions',
+    'HTML file' => 'HTML file',
+    'language' => 'File language',
+    'filesize' => 'File size',
+    'stop edit' => 'Stop edition',
 ];

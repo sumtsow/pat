@@ -72,7 +72,7 @@ class UserController extends Controller
         $user = User::find(Auth::id());
         if($request->password) {
             $user->password = bcrypt($request->password);
-            //$user->updated_at = date();
+            $user->updated_at = date("Y-m-d H:i:s");
         }
         $user->save();
         if($user->role == 'admin') {

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Html;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateHtml;
 
 class HtmlController extends Controller
 {
     /**
-     * Display a listing of the HTML pages.
+     * Display a listing of the HTML files.
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,7 +21,7 @@ class HtmlController extends Controller
     }
 
     /**
-     * Show the form for creating a new HTML page.
+     * Show the form for creating a new HTML file.
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,41 +54,39 @@ class HtmlController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified HTML file.
      *
-     * @param  \App\Html  $html
+     * @param  string $filename
+     * @param  string $saved
      * @return \Illuminate\Http\Response
      */
-    public function show(Html $html)
+    public function edit($filename, $saved = null)
     {
-        //
+        if(!isset($saved)) {
+            $saved = false;
+        }
+        return view('html.edit', [
+            'file' => new Html(app()->getLocale(),$filename),
+        ])->with('saved', $saved);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Html  $html
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Html $html)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the specified HTML file in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Html  $html
+     * @param  string  $filename
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Html $html)
+    public function update(UpdateHtml $request, $filename)
     {
-        //
+        $file = new Html(app()->getLocale(),$filename);
+        $file->__set('content', $request->content);
+        $file->update();
+        return redirect('/html/'.$filename.'/edit/true');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified HTML file from storage.
      *
      * @param  string  $filename
      * @return \Illuminate\Http\Response

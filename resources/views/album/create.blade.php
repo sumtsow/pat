@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />  
 @endsection
 
+@include('errors')
+
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="/gallery">{{__('gallery.list')}}</a></li>
     <li class="breadcrumb-item">{{__('gallery.new album')}}</li> 

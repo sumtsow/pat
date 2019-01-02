@@ -39,7 +39,7 @@ class AlbumController extends BaseController
     {
         return view('album.create', [
             'album' => new Album(),
-            'locales' => \Config::get('app.locales'),
+            'locales' => config('app.locales'),
         ]);
     }
 
@@ -81,7 +81,7 @@ class AlbumController extends BaseController
     public function update(UpdateAlbum $request, $dir)
     {
         $album = new Album($dir);
-        $locales = \Config::get('app.locales');
+        $locales = config('app.locales');
         foreach($locales as $locale) {
             $album->setTitle($locale, $request->$locale);
         }

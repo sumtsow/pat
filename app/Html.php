@@ -41,7 +41,7 @@ class Html
         $result = false;
         if(isset($locale)) {
             $locale = strtolower($locale);
-            if(in_array($locale, \Config::get('app.locales'))) {
+            if(in_array($locale, config('app.locales'))) {
                 $this->filename = $file;
                 $this->basename = $file.'.html';                
                 $this->dir = '/public/html/'.$locale;

@@ -35,7 +35,7 @@ class Controller extends BaseController
         }
         $file = new Html(app()->getLocale(), $page);
         if(!$file->__get('size')) {
-            $file = new Html(\Config::get('app.fallback_locale'), $page);
+            $file = new Html(config('app.fallback_locale'), $page);
         }
         return view('page', [
             'file' => $file,
@@ -49,7 +49,7 @@ class Controller extends BaseController
      */
     public function locale($locale = 'ua')
     {
-        if (!in_array($locale, \Config::get('app.locales'))) {
+        if (!in_array($locale, config('app.locales'))) {
             $locale = app()->getLocale();
         }
         return redirect()->back()->cookie('locale', $locale, 120); 
@@ -58,20 +58,15 @@ class Controller extends BaseController
     /**
      * Does student's test.
      *
-     * @param string $locale
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function test($locale = 'ua', Request $request)
+    public function test(Request $request)
     {
-        $locale = $request->locale;
-        if(empty($questions = $request->questions)) {
-            $locale = app()->getLocale();
-        }
         if(empty($questions = $request->questions)) {
             $questions = 30;
         }
-        $path = 'storage/html/'.$locale.'/'.$request->page.'.html';
+        $path = 'storage/html/tests/'.$request->page.'.html';
         $doc = simplexml_load_file($path);
         $total_questions = count($doc->p);
         if($questions > $total_questions) {

@@ -89,7 +89,7 @@ Route::get('/me', 'UserController@passwd')->middleware('auth');
 Route::put('/passwd', 'UserController@savepasswd')->middleware('auth');
 
 // Test attempt
-Route::get('/test/{locale?}', 'Controller@test')->name('test');
+Route::get('/test', 'Controller@test')->name('test');
 
 // Album Create Form page
 Route::get('/album/create', 'AlbumController@create')->middleware('can:admin, App\User');

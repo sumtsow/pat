@@ -22,14 +22,8 @@
 <body>
 @include('loginform') 
 <div class="container-fluid">
-    <div class="card w-100 my-4" id="logo">
-            <img class="w-100 img-fluid rounded" src="/img/title_{{app()->getLocale()}}.jpg" />
-                
-        <div class="card-img-overlay float-right" id="lang">
-            @foreach(Config::get('app.locales') as $locale)
-            <a href="/setlocale/{{ $locale }}" class="btn {{ $locale }} border-0 mr-1 py-1 px-2">{{ $locale }}</a>
-            @endforeach
-        </div>
+    <div class="card w-100 my-3 align-items-end flex-column" id="logo">
+        <img class="card-image rounded w-100" src="/img/title_{{app()->getLocale()}}.jpg" />
     </div>
     <div class="row mx-1">
         @include('carousel') 

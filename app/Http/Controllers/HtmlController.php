@@ -28,7 +28,7 @@ class HtmlController extends Controller
     public function create()
     {
         $files = array();
-        $locales = \Config::get('app.locales');
+        $locales = config('app.locales');
         foreach($locales as $locale) {
             $files[$locale] = new Html($locale);
         }
@@ -46,7 +46,7 @@ class HtmlController extends Controller
     public function store(Request $request)
     {
         $filename = $request->file;
-        foreach(\Config::get('app.locales') as $locale) {
+        foreach(config('app.locales') as $locale) {
             $page = new Html($locale, $filename);
             $page->create();
         }
@@ -93,7 +93,7 @@ class HtmlController extends Controller
      */
     public function destroy($filename)
     {
-        foreach(\Config::get('app.locales') as $locale) {
+        foreach(config('app.locales') as $locale) {
             $page = new Html($locale, $filename);
             if($page->__get('lastModified')) {
                 $page->delete();

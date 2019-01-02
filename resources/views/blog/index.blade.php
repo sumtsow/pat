@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="justify-center">{{ __('navigation.Guestbook')}}</h1>
+    <h1 class="justify-center">{{ __('admin.Guestbook')}}</h1>
     @auth
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">{{ __('post.add') }}</button>
     @endauth

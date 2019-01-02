@@ -28,7 +28,7 @@ class Album
         else {
             self::newName();
         }
-        $locales = \Config::get('app.locales');
+        $locales = config('app.locales');
         $this->storagePath = 'public/img/gallery/'.$this->dir; 
         $this->path = 'storage/img/gallery/'.$this->dir;
         foreach($locales as $locale) {

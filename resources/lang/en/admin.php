@@ -32,4 +32,5 @@ return [
     'filesize' => 'File size',
     'stop edit' => 'Stop edition',
     'saved' => 'Changes have been saved!',
+    'Guestbook' => 'Guestbook',
 ];

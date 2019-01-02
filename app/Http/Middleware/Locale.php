@@ -22,10 +22,10 @@ class Locale
         if(isset($crypted)) {
             $locale = \Crypt::decryptString($crypted);
         }
-        if (in_array($locale, Config::get('app.locales'))) {
+        if (in_array($locale, config('app.locales'))) {
             app()->setLocale($locale);
         }
-        setlocale(LC_ALL, Config::get('app.timeformat')[$locale]);
+        setlocale(LC_ALL, config('app.timeformat')[$locale]);
         return $next($request);
     }
 }

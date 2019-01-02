@@ -43,7 +43,7 @@ class Photo
         if(isset($basename) && isset($album)) {
             $path = '/public/img/gallery/'.$album.'/'.$basename;
             $extension = pathinfo($path)['extension'];
-            $imagetypes = \Config::get('app.imagetypes');
+            $imagetypes = config('app.imagetypes');
             if(Storage::exists($path) && in_array(strtolower($extension), $imagetypes)) {
                 $this->basename = $basename;
                 $this->album = $album;

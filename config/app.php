@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Pat Phy Dep Site'),
+    'name' => env('APP_NAME', 'Department of Pathologic Physiology'),
 
     /*
     |--------------------------------------------------------------------------
@@ -232,7 +232,7 @@ return [
     
     'title' => [
         'ua' => 'Кафедра патологічної фізіології',
-        'en' => 'Department of Pathologic Physiology',        
+        /*'en' => 'Department of Pathologic Physiology',*/    
         'ru' => 'Кафедра патологической физиологии',
 
     ],
@@ -241,12 +241,12 @@ return [
     
     'imagetypes' => ['jpg', 'jpeg', 'png'],
     
-    'locales' => ['ua', 'en', 'ru'],
+    'locales' => ['ua', 'ru'], /* 'en', */
     
     'timeformat' => [
         'ua' => 'uk_UA.UTF-8',
-        'en' => 'en_US.UTF-8',
-        'ru' => 'ru_RU.UTF-8',
+        'ru' => 'ru_RU.UTF-8',        
+        /*'en' => 'en_US.UTF-8',*/
     ],
     
     'paginate' => 10,

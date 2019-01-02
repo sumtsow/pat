@@ -11,7 +11,7 @@ defined('ACCESS') or die();
 //шаблон файлового менеджера
 $conf['general.template'] = 'default';
 //язык менеджера изображений
-$conf['general.language'] = $_SESSION['lang'];
+$conf['general.language'] = 'ua';
 //кодировка файлов и страниц
 $conf['general.char_set'] = 'utf-8';
 //количество изображений показываемых на одной странице
@@ -34,11 +34,10 @@ $conf['session.valid_users_groups'] = '/^.+$/';
 */
 //путь для заключительного url
 //$conf['filesystem.path'] = '../../userfiles/';
-$conf['filesystem.path'] = 'img/';
+$conf['filesystem.path'] = 'storage/img/';
 
 //относительный путь к файлам пользователя
-#$conf['filesystem.files_path'] = '../../../../userfiles/';
-$conf['filesystem.files_path'] = '../../../img/';
+$conf['filesystem.files_path'] = '../../../storage/img/';
 
 //регулярное выражения описания пропускаемых каталогов
 $conf['filesystem.exclude_directory_pattern'] = '/^_thumb$|^_system$/i';
@@ -55,7 +54,6 @@ $conf['filesystem.max_file_size'] = 2097152;
 //размер очереди файлов
 $conf['filesystem.queue_size_limit'] = 5;
 //кодировка файловой системы
-//$conf['filesystem.char_set'] = 'CP1251';
 $conf['filesystem.char_set'] = 'UTF-8';
 
 /*

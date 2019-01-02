@@ -14,7 +14,7 @@
     <h1 class="justify-center">{{ __('admin.user admin')}}</h1>
     <div class="table-responsive">
     <table class="table bg-white table-striped">
-        <thead class="thead-dark text-center">
+        <thead class="thead-pat text-center">
             <tr>
                 <th scope="col">{{ __('admin.id')}}</th>
                 <th scope="col">{{ __('auth.Name')}}</th>

@@ -24,10 +24,6 @@ body {
     box-shadow: 3px 3px 10px #222;
 }
 
-#lang {
-    margin-top: -40px;
-}
-
 #lang a {
     font-size: 1.2rem;
 }
@@ -117,6 +113,16 @@ body {
 }
 
 .card-header {
+     background-color: #0D3E38;
+     color: #F1EA7A;
+}
+
+.thead-pat {
+     background-color: #0D3E38;
+     color: #F1EA7A;
+}
+
+.modal-header {
      background-color: #0D3E38;
      color: #F1EA7A;
 }

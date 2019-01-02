@@ -47,6 +47,7 @@ tinyMCE.init({
 @endsection
 
 @section('breadcrumb')
+<li class="breadcrumb-item"><a href="/home">{{__('auth.Dashboard')}}</a></li>
 <li class="breadcrumb-item"><a href="/html">{{ __('admin.HTML admin')}}</a></li>
 @endsection
 
@@ -55,7 +56,9 @@ tinyMCE.init({
 @include('errors')
 
 @if($saved)
-    @include('msg')
+<div class="alert alert-success">
+    <p>{{ __('admin.saved') }}</p>
+</div>
 @endif
     
 <div class="container">

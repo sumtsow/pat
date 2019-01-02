@@ -31,4 +31,5 @@ return [
     'language' => 'File language',
     'filesize' => 'File size',
     'stop edit' => 'Stop edition',
+    'saved' => 'Changes have been saved!',
 ];

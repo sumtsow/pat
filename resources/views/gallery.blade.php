@@ -53,6 +53,8 @@
             </div>
         @endforeach
     </div>
+    @can('admin', Auth::user())
     <a class="float-left btn btn-success mt-3" href="/album/create">{{ __('gallery.new album') }}</a>
+    @endcan
 </div>
 @endsection

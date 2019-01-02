@@ -12,8 +12,7 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-
+    'Main' => 'Головна',
     'previous' => '&laquo; Назад',
     'next' => 'Вперед &raquo;',
-
 ];

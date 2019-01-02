@@ -17,12 +17,12 @@
 	function answer(quest,answer) {		
 		if (document.forms[quest].elements[answer].checked)
 		{
-			document.forms[quest].img.src="/img/eyegreen.gif";
+			document.forms[quest].img.src="/img/eyegreen.png";
 			good++;
 		 	marked[quest]=1;			
 		}
 		else {
-			document.forms[quest].img.src="/img/eyered.gif";
+			document.forms[quest].img.src="/img/eyered.png";
 			bad++;
 		 	marked[quest]=-1;			
 		}

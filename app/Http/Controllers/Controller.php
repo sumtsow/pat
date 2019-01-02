@@ -58,9 +58,11 @@ class Controller extends BaseController
     /**
      * Does student's test.
      *
+     * @param string $locale
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function test($locale, Request $request)
+    public function test($locale = 'ua', Request $request)
     {
         $locale = $request->locale;
         if(empty($questions = $request->questions)) {
@@ -69,7 +71,7 @@ class Controller extends BaseController
         if(empty($questions = $request->questions)) {
             $questions = 30;
         }
-        $path = 'storage/html/'.$locale.'/test.html';
+        $path = 'storage/html/'.$locale.'/'.$request->page.'.html';
         $doc = simplexml_load_file($path);
         $total_questions = count($doc->p);
         if($questions > $total_questions) {

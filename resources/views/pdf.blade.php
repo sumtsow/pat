@@ -4,6 +4,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 @endsection
 
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="/home">{{__('auth.Dashboard')}}</a></li>
+<li class="breadcrumb-item">{{ __('admin.pdf list')}}</li>
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -43,7 +48,7 @@
         <div class="card mt-3">
             <div class="card-body h5">
                 <a target="_blank" href="/storage/pdf/{{ $file->__get('basename') }}">{{ $file->__get('basename') }}</a>
-                <a class="float-right ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $file->__get('filename') }}"><span class="badge badge-primary badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>           
+                <a class="float-right" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $file->__get('filename') }}"><span class="badge badge-light badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>           
             </div>
         </div>
     </div>

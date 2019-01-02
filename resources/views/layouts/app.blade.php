@@ -22,14 +22,14 @@
 <body>
 @include('loginform') 
 <div class="container-fluid">
-    <div class="row mx-1 my-3" id="logo">
-        <div class="col-sm-12 px-0 mb-0"><img class="w-100 img-fluid rounded" src="/img/title_{{app()->getLocale()}}.jpg" /></div>        
-        <div class="col-sm-2 offset-md-10 mb-0" id="lang">
+    <div class="card w-100 my-4" id="logo">
+            <img class="w-100 img-fluid rounded" src="/img/title_{{app()->getLocale()}}.jpg" />
+                
+        <div class="card-img-overlay float-right" id="lang">
             @foreach(Config::get('app.locales') as $locale)
-            <a href="/setlocale/{{ $locale }}" class="btn {{ $locale }} border-0 mr-1 p-1 px-2">{{ $locale }}</a>
+            <a href="/setlocale/{{ $locale }}" class="btn {{ $locale }} border-0 mr-1 py-1 px-2">{{ $locale }}</a>
             @endforeach
-        </div>        
-
+        </div>
     </div>
     <div class="row mx-1">
         @include('carousel') 
@@ -37,16 +37,14 @@
     <div class="row p-3 border-1">    
         <div class="card col-sm-3 border-0 p-0 bg-transparent">
             <nav class="nav rounded" id="nav">
-                <ul class="nav flex-column">
-                @include('nav')
-                </ul>
+            <?php include('storage/html/'.app()->getLocale().'/navigation.html'); ?>
             </nav>
         </div>
         <div class="card col-sm-9 border-0 pl-3 pr-0 bg-transparent">
             <div class="card-header m-0 p-0 border-0" id="breadcrumbs">
                 <nav class="nav my-0 py-0" area-label="breadcrumb">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="/">{{ __('navigation.Main')}}</a></li>
+                        <li class="breadcrumb-item"><a href="/">{{ __('pagination.Main')}}</a></li>
                         @yield('breadcrumb')
                     </ol>
                 </nav>
@@ -61,12 +59,56 @@
             <div class="card w-100 mb-2 border-0 m-0 p-0">
                 <div class="card-body m-0 p-0">
                     <div class="row justify-content-center my-0" id="foo">
-                        <small>@yield('counters') &copy; {{ config('app.title.'.app()->getLocale())}}, 2015-{{date('Y')}}</small>
+@can('admin', Auth::user())
+<!-- Yandex.Metrika informer -->
+<a href="https://metrika.yandex.ru/stat/?id=24685271&amp;from=informer"
+target="_blank" rel="nofollow"><img src="//mc.yandex.ru/informer/24685271/1_1_78E8DAFF_58C8BAFF_0_pageviews"
+style="width:80px; height:15px; border:0; margin: 5px 0 0 0" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" onclick="try{Ya.Metrika.informer({i:this,id:24685271,lang:'ru'});return false}catch(e){}"/></a>
+<!-- /Yandex.Metrika informer -->
+@endcan
+                        <small>{{ config('app.title.'.app()->getLocale())}}, 2015-{{date('Y')}}</small>
                     </div>
                 </div>
             </div>
         </div>
     </footer>    
 </div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter24685271 = new Ya.Metrika({id:24685271,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/24685271" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- GoogleAnalytics counter -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-101124778-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /GoogleAnalytics counter -->
 </body>
 </html>

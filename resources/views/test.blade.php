@@ -17,7 +17,7 @@
 <form id="form{{$key+1}}" name="form{{$key+1}}">
     <div class="card border-success mt-4">
         <div class="card-header border-success">
-            <h5><img class="left" src="/img/eyegray.gif" name="img" width="15" height="15"> <b>{{ __('test.question')}} {{$key+1}}.</b> {!! $doc->p[$question] !!}</h5></div>
+            <h5><img class="left" src="/img/eyegray.png" name="img" width="16" height="16"> <b>{{ __('test.question')}} {{$key+1}}.</b> {!! $doc->p[$question] !!}</h5></div>
         <div class="card-body list-group p-0">    
 <?php
     $aswer_count = count($doc->ul[$question]->li);
@@ -25,7 +25,6 @@
     $correct = array_search(1,$answer_order);
 ?>
 @foreach($answer_order as $akey => $answer)
-<?php /*$answer--;*/ ?>
             <li class="list-group-item border"><input name="RadioGroup" type="radio" value="{{$answer-1}}" onClick="ButOn('form{{$key+1}}')"> {!! $doc->ul[$question]->li[$answer-1] !!}</li>
 @endforeach
         </div>

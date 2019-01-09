@@ -43,7 +43,7 @@ tinyMCE.init({
         }
 });
  
-</script> 
+</script>
 @endsection
 
 @section('breadcrumb')

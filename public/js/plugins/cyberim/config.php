@@ -11,7 +11,7 @@ defined('ACCESS') or die();
 //шаблон файлового менеджера
 $conf['general.template'] = 'default';
 //язык менеджера изображений
-$conf['general.language'] = 'ua';
+$conf['general.language'] = 'ru';
 //кодировка файлов и страниц
 $conf['general.char_set'] = 'utf-8';
 //количество изображений показываемых на одной странице
@@ -34,7 +34,7 @@ $conf['session.valid_users_groups'] = '/^.+$/';
 */
 //путь для заключительного url
 //$conf['filesystem.path'] = '../../userfiles/';
-$conf['filesystem.path'] = '/storage/img/';
+$conf['filesystem.path'] = '../../../storage/img/';
 
 //относительный путь к файлам пользователя
 $conf['filesystem.files_path'] = '../../../storage/img/';
@@ -42,15 +42,15 @@ $conf['filesystem.files_path'] = '../../../storage/img/';
 //регулярное выражения описания пропускаемых каталогов
 $conf['filesystem.exclude_directory_pattern'] = '/^_thumb$|^_system$/i';
 //права устанавливаемые на создаваемые директории
-$conf['filesystem.directory_chmod'] = 0777;
+$conf['filesystem.directory_chmod'] = 0755;
 //права утанавливаемые на создаваемые и загружаемые файлы
-$conf['filesystem.file_chmod'] = 0777;
+$conf['filesystem.file_chmod'] = 0666;
 //допустимые расшырения файлов в случае если использовать драйвер обработки изображений ImageMagick этот список можно значительно расширить
 $conf['filesystem.allowed_extensions'] = 'gif|png|jpeg|jpg|jpe|psd';
 //сортировка файлов если установленно в true то файлы сортируются в порядке возростание, false - порядке убывания
 $conf['filesystem.sort'] = true;
 //максимальный размер загружаемого файла в байтах
-$conf['filesystem.max_file_size'] = 2097152;
+$conf['filesystem.max_file_size'] = 8388608;
 //размер очереди файлов
 $conf['filesystem.queue_size_limit'] = 5;
 //кодировка файловой системы

@@ -34,7 +34,7 @@ $conf['session.valid_users_groups'] = '/^.+$/';
 */
 //путь для заключительного url
 //$conf['filesystem.path'] = '../../userfiles/';
-$conf['filesystem.path'] = 'storage/img/';
+$conf['filesystem.path'] = '/storage/img/';
 
 //относительный путь к файлам пользователя
 $conf['filesystem.files_path'] = '../../../storage/img/';

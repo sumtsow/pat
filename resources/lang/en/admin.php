@@ -33,4 +33,6 @@ return [
     'stop edit' => 'Stop edition',
     'saved' => 'Changes have been saved!',
     'Guestbook' => 'Guestbook',
+    'do you want save chenges' => 'Do you want to save chenges',
+    'no' => 'No',
 ];

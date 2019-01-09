@@ -62,12 +62,31 @@ tinyMCE.init({
 @endif
     
 <div class="container">
-    <a href="/{{ $file->__get('filename')}}" class="btn btn-success float-right" title="{{__('admin.stop edit')}}" >{{__('admin.stop edit')}}</a>
+    <a data-toggle="modal" data-target="#Modal" class="btn btn-success float-right text-light" title="{{__('admin.stop edit')}}" >{{__('admin.stop edit')}}</a>
     <h1 class="justify-center">{{ __('admin.HTML file')}} &laquo;{{ $file->__get('filename') }}&raquo;</h1>
     <h2>{{ __('admin.language')}}: {{ app()->getLocale() }}</h2>
     <h2>{{ __('admin.filesize')}}: {{ $file->__get('size')}} kb</h2>
     <form id="editor" method="post" action="/html/{{$file->__get('filename')}}">
 {{csrf_field()}}{{ method_field('put') }}<textarea class="col-md-auto" name="content">{{ $file->__get('content')}}</textarea>
     </form>
+</div>
+<div class="modal" id="Modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{__('gallery.warning')}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>{{__('admin.do you want save chenges')}}?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/{{ $file->__get('filename') }}" class="btn btn-warning">{{__('admin.no')}}</a>
+        <button form="editor" type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('gallery.yes')}}</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

@@ -8,7 +8,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto" id="lang">
 @foreach(config('app.locales') as $locale)
-                <li class="nav-item mx-1"><a href="/setlocale/{{ $locale }}" class="btn {{ $locale }} border-0">{{ $locale }}</a></li>
+                <li class="nav-item mx-1"><a href="/setlocale/{{ $locale }}" class="btn text-dark {{ $locale }} border-0">{{ $locale }}</a></li>
 @endforeach
             </ul>
             <!-- Right Side Of Navbar -->

@@ -19,8 +19,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $user = User::where('name', $request->name)->first();
-        if (Auth::guard($guard)->check() && !$user->email_verified_at) {
+        if (Auth::guard($guard)->check()) {
             return redirect('/');
         }
         return $next($request);

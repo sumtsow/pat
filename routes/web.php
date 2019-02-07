@@ -70,6 +70,9 @@ Route::delete('/pdf/delete/{page}', 'PdfController@destroy')->middleware('can:ad
 // PDF page view
 Route::get('/pdf/{page?}', 'PdfController@show')->name('pdf');
 
+// User state switch action
+Route::get('/users/switchstate/{id}', 'UserController@switchstate')->middleware('can:admin, App\User');
+
 // Users list view
 Route::get('/users', 'UserController@index')->name('users')->middleware('can:admin, App\User');
 

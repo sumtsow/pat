@@ -19,6 +19,7 @@ return [
     'Name' => "Ім'я",
     'register' => 'Реєстрація',
     'E-Mail Address' => 'Електронна пошта',
+    'Confirmed' => 'Підтверджений',
     'Password' => 'Пароль', 
     'Confirm Password' => 'Підтвердити пароль',  
     'Remember Me' => "Запам'ятати мене",

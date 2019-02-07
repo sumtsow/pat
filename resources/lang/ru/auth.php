@@ -19,6 +19,7 @@ return [
     'Name' => 'Имя',
     'register' => 'Регистрация',
     'E-Mail Address' => 'Электронная почта',
+    'Confirmed' => 'Подтвержден',    
     'Password' => 'Пароль', 
     'Confirm Password' => 'Подтвердить пароль',     
     'Remember Me' => 'Запомнить меня',

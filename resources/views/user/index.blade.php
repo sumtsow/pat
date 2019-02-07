@@ -19,6 +19,7 @@
                 <th scope="col">{{ __('admin.id')}}</th>
                 <th scope="col">{{ __('auth.Name')}}</th>
                 <th scope="col">{{ __('auth.E-Mail Address')}}</th>
+                <th scope="col">{{ __('auth.Confirmed')}}</th>                
                 <th scope="col">{{ __('admin.Role')}}</th>
                 <th scope="col" colspan="2">{{ __('admin.action')}}</th>              
             </tr>
@@ -29,6 +30,12 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td><a href="mailto://{{ $user->email }}">{{ $user->email }}</a></td>
+                <td>
+                    <form id="switch-form" action="{{ url('/users/switchstate/'.$user->id) }}">
+                        @csrf
+                        <input type="checkbox" @if($user->email_verified_at) checked="checked" @endif onClick="this.form.submit();" />
+                    </form>
+                </td>
                 <td @if($user->role =='admin') class="text-danger" @endif>{{ $user->role }}</td>
                 <td><a class="float-right" title="{{__('gallery.edit')}}" href="/users/{{ $user->id }}"><span class="badge badge-light badge-pill"><span class="fa fa-edit" aria-hidden="true"></span></span></a></td>
                 <td><a class="ml-1" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $user->id }}"><span class="badge badge-light badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a></td>                  

@@ -19,6 +19,7 @@ return [
     'Name' => 'Name',
     'register' => 'Register',
     'E-Mail Address' => 'E-Mail Address',
+    'Confirmed' => 'Confirmed',
     'Password' => 'Password',
     'Confirm Password' => 'Confirm Password',    
     'Remember Me' => 'Remember Me',

@@ -37,7 +37,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateUser  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -47,6 +47,20 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
+        $user->save();
+        return redirect('users');
+    }
+    
+    /**
+     * Switch on/off user account state used by `email_verified_at` field.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function switchstate($id)
+    {
+        $user = User::find($id);
+        $user->email_verified_at ? $user->email_verified_at = null : $user->email_verified_at = date("Y-m-d H:i:s");
         $user->save();
         return redirect('users');
     }
@@ -64,7 +78,7 @@ class UserController extends Controller
     /**
      * Change password action
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdatePassword  $request
      * @return \Illuminate\Http\Response
      */
     public function savepasswd(UpdatePassword  $request)

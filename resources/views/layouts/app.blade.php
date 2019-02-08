@@ -20,10 +20,13 @@
     @yield('styles')
 </head>
 <body>
-@include('loginform') 
+ 
 <div class="container-fluid">
-    <div class="card w-100 my-3 align-items-end flex-column" id="logo">
+    <div class="card w-100 my-3" id="logo">
         <img class="card-image rounded w-100" src="/img/title_{{app()->getLocale()}}.jpg" />
+        <div class="d-flex align-items-end card-img-overlay p-0 justify-content-end">
+        @include('loginform')
+        </div>
     </div>
     <div class="row mx-1">
         @include('carousel') 

@@ -1,16 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-    <div class="container">
+<nav class="navbar navbar-expand-md navbar-laravel bg-transparent align-self-end">
+    <div class="container mr-0 mb-0">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto" id="lang">
-@foreach(config('app.locales') as $locale)
-                <li class="nav-item mx-1"><a href="/setlocale/{{ $locale }}" class="btn text-dark {{ $locale }} border-0">{{ $locale }}</a></li>
-@endforeach
-            </ul>
+
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
@@ -37,6 +33,11 @@
                     </div>
                 </li>
                 @endguest
+            </ul>
+            <ul class="navbar-nav pr-1" id="lang">
+@foreach(config('app.locales') as $locale)
+                <li class="nav-item mx-1"><a href="/setlocale/{{ $locale }}" class="btn text-dark {{ $locale }} border-0">{{ $locale }}</a></li>
+@endforeach
             </ul>
         </div>
     </div>

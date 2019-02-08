@@ -83,6 +83,10 @@ body {
     background: #0D3E38;
 }
 
+.nav-link, .navbar-toggler {
+    color: #F1EA7A !important;
+}
+
 #breadcrumbs {
     border: 1px #04231F solid;
     border-radius: .5rem;

@@ -24,7 +24,7 @@
 <div class="container-fluid">
     <div class="card w-100 my-3" id="logo">
         <img class="card-image rounded w-100" src="/img/title_{{app()->getLocale()}}.jpg" />
-        <div class="d-flex align-items-end card-img-overlay p-0 justify-content-end">
+        <div class="align-items-end card-img-overlay p-0 justify-content-end">
         @include('loginform')
         </div>
     </div>
@@ -33,8 +33,13 @@
     </div>
     <div class="row p-3 border-1">    
         <div class="card col-sm-3 border-0 p-0 bg-transparent">
-            <nav class="nav rounded" id="nav">
+          <nav id="nav" class="nav rounded navbar navbar-expand-md mb-3">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+    <span class="navbar-toggler-icon text-light"></span>
+  </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
             <?php include('storage/html/'.app()->getLocale().'/navigation.html'); ?>
+            </div>
             </nav>
         </div>
         <div class="card col-sm-9 border-0 pl-3 pr-0 bg-transparent">

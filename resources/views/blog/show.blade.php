@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <h1 class="justify-center">{{ __('admin.Guestbook')}}</h1>
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal">{{ __('post.add') }}</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">{{ __('post.add') }}</button>
 @foreach($posts as $post)
 <!-- Comment # {{$post->id}} -->
     <div class="card w-100 mt-3 border-light rounded shadow">

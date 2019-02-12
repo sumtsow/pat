@@ -72,7 +72,7 @@
 <!-- Yandex.Metrika informer -->
 <a href="https://metrika.yandex.ru/stat/?id=24685271&amp;from=informer"
 target="_blank" rel="nofollow"><img src="//mc.yandex.ru/informer/24685271/1_1_78E8DAFF_58C8BAFF_0_pageviews"
-style="width:80px; height:15px; border:0; margin: 5px 0 0 0" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" onclick="try{Ya.Metrika.informer({i:this,id:24685271,lang:'ru'});return false}catch(e){}"/></a>
+style="width:80px; height:15px; border:0; margin: -8px 10px 0 0" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" onclick="try{Ya.Metrika.informer({i:this,id:24685271,lang:'ru'});return false}catch(e){}"/></a>
 <!-- /Yandex.Metrika informer -->
 @endcan
                         <small>{{ config('app.title.'.app()->getLocale())}}, 2015-{{date('Y')}}</small>

@@ -20,8 +20,9 @@
     @yield('styles')
 </head>
 <body>
- 
-<div class="container-fluid">
+<div class="container">
+    <div class="col-sm-1"></div>
+    <div class="container-fluid">
     <div class="card w-100 my-3" id="logo">
         <img class="card-image rounded w-100" src="/img/title_{{app()->getLocale()}}.jpg" />
         <div class="card-img-overlay p-0">
@@ -80,7 +81,9 @@ style="width:80px; height:15px; border:0; margin: -8px 10px 0 0" alt="Яндек
                 </div>
             </div>
         </div>
-    </footer>    
+    </footer>
+    </div>
+    <div class="col-sm-1"></div> 
 </div>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

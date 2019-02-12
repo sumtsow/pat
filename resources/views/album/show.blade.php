@@ -10,7 +10,7 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="/gallery">{{__('gallery.list')}}</a></li>
-    <li class="breadcrumb-item text-truncate">{{ $album->__get('title')[app()->getLocale()] }}</li>    
+    <li class="breadcrumb-item">{{ $album->__get('title')[app()->getLocale()] }}</li>    
 @endsection
 
 @section('content')

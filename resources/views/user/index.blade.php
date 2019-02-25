@@ -70,4 +70,5 @@
     </table>
     </div>
 </div>
+<div class="flex-center">{{ $users->links() }}</div>
 @endsection

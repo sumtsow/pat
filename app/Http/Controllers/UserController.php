@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         return view('user.index', [
-            'users' => User::orderBy('name', 'asc')->paginate(\App::environment('paginate')),
+            'users' => User::getAll(),
         ]);
     }
 

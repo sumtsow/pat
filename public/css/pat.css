@@ -138,6 +138,10 @@ body {
      color: #F1EA7A;
 }
 
+.card-header .modal-body {
+     color: #000000;
+}
+
 .thead-pat {
      background-color: #0D3E38;
      color: #F1EA7A;
@@ -148,6 +152,6 @@ body {
      color: #F1EA7A;
 }
 
-.table-sm td, .table-sm a {
+.table-sm td, .table-sm a,  .table-sm th {
     font-size: 0.78rem;
 }

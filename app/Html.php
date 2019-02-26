@@ -94,7 +94,7 @@ class Html
         return Storage::delete($this->storagePath);
     }
     
-    static function getAll() {
+    public static function getAll() {
         return Storage::files('/public/html/'.app()->getLocale());
-    }
+    }  
 }

@@ -13,12 +13,13 @@
 <div class="container">
     <h1 class="justify-center">{{ __('admin.user admin')}}</h1>
     <div class="table-responsive">
-    <table class="table bg-white table-striped">
+    <table class="table table-sm bg-white table-striped">
         <thead class="thead-pat text-center">
             <tr>
                 <th scope="col">{{ __('admin.id')}}</th>
                 <th scope="col">{{ __('auth.Name')}}</th>
                 <th scope="col">{{ __('auth.E-Mail Address')}}</th>
+                <th scope="col">{{ __('admin.date')}}</th>
                 <th scope="col">{{ __('auth.Confirmed')}}</th>                
                 <th scope="col">{{ __('admin.Role')}}</th>
                 <th scope="col" colspan="2">{{ __('admin.action')}}</th>              
@@ -30,6 +31,7 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td><a href="mailto://{{ $user->email }}">{{ $user->email }}</a></td>
+                <td>{{ date('d.m.Y', $user->created_at->getTimestamp()) }}</td>
                 <td>
                     <form id="switch-form" action="{{ url('/users/switchstate/'.$user->id) }}">
                         @csrf

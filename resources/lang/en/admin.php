@@ -25,7 +25,7 @@ return [
     'filename' => 'File Name (using Latin symbols without spaces or dots)',
     'Role' => 'Role',
     'User' => 'User',
-    'id' => 'Identifier',
+    'id' => 'ID',
     'action' => 'Posiible actions',
     'HTML file' => 'HTML file',
     'language' => 'File language',
@@ -35,4 +35,5 @@ return [
     'Guestbook' => 'Guestbook',
     'do you want save chenges' => 'Do you want to save chenges',
     'no' => 'No',
+    'date' => 'Date',
 ];

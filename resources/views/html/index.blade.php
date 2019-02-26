@@ -50,4 +50,5 @@
 @endforeach
     </div>
 </div>
+<div class="flex-center">{{ $files->links() }}</div>
 @endsection

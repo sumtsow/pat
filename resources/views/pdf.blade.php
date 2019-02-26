@@ -20,8 +20,8 @@
         <input type="file" name="pdf" id="photo" />
         <input type="submit" class="btn btn-success my-3" value="{{ __('admin.upload') }}" />
     </form>
+    <div class="card-columns">    
     @foreach($pdffiles as $key => $file)
-    <div class="card-columns">
     <div class="modal" id="Modal_{{ $key }}" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -45,14 +45,14 @@
             </div>
         </div>
     </div>    
-        <div class="card mt-3">
-            <div class="card-body h5">
+        <div class="card mb-3">
+            <div class="card-body">
                 <a target="_blank" href="/storage/pdf/{{ $file->__get('basename') }}">{{ $file->__get('basename') }}</a>
                 <a class="float-right" title="{{__('gallery.delete')}}" data-toggle="modal" data-target="#Modal_{{ $key }}"><span class="badge badge-light badge-pill"><span class="fa fa-trash-alt" aria-hidden="true"></span></span></a>           
             </div>
         </div>
+    @endforeach    
     </div>
-    @endforeach
 </div>
 <div class="flex-center">{{ $pdffiles->links() }}</div>
 @endsection

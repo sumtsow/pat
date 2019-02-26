@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="justify-center">{{ __('admin.HTML admin')}}</h1>
+    <h1 class="text-center">{{ __('admin.HTML admin')}}</h1>
     <div class="col-md-9">
         <div class="row"><a href="/html/create" class="btn btn-success float-right my-3" title="{{__('admin.new html')}}">{{__('admin.new html')}}</a></div>
     </div>

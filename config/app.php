@@ -251,5 +251,5 @@ return [
     
     'paginate' => 10,
     'html_paginate' => 24,
-    'pdf_paginate' => 10,
+    'pdf_paginate' => 15,
 ];

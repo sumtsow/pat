@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="justify-center">{{ __('admin.user admin')}}</h1>
+    <h1 class="text-center">{{ __('admin.user admin')}}</h1>
     <div class="table-responsive">
     <table class="table table-sm bg-white table-striped">
         <thead class="thead-pat text-center">

@@ -59,7 +59,7 @@ Route::delete('/html/{filename}', 'HtmlController@destroy')->middleware('can:adm
 Route::post('/html', 'HtmlController@store')->middleware('can:admin, App\User')->middleware('verified');
 
 // PDF files list view
-Route::get('/pdf/index', 'PdfController@index')->middleware('can:admin, App\User')->middleware('verified');
+Route::get('/pdf', 'PdfController@index')->middleware('can:admin, App\User')->middleware('verified');
 
 // PDF files upload action
 Route::post('/pdf/create', 'PdfController@create')->middleware('can:admin, App\User')->middleware('verified');

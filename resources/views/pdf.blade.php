@@ -21,8 +21,30 @@
         <input type="submit" class="btn btn-success my-3" value="{{ __('admin.upload') }}" />
     </form>
     @foreach($pdffiles as $key => $file)
-
-    <div class="card-columns">    
+    <div class="card-columns">
+    <div class="modal" id="Modal_{{ $key }}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('gallery.warning')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{__('gallery.completly remove')}} <b>{{ $file->__get('basename') }}?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">{{__('gallery.cancel')}}</button>
+                    <form action="/pdf/delete/{{ $file->__get('basename') }}" method="post">        
+                    <button type="button" class="btn btn-danger" onclick="this.form.submit();">{{__('gallery.yes')}}</button>
+                    {{csrf_field()}}
+                    {{method_field('delete')}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
         <div class="card mt-3">
             <div class="card-body h5">
                 <a target="_blank" href="/storage/pdf/{{ $file->__get('basename') }}">{{ $file->__get('basename') }}</a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Html;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateHtml;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HtmlController extends Controller
 {
@@ -15,8 +16,15 @@ class HtmlController extends Controller
      */
     public function index()
     {
+        $page = (isset($_REQUEST['page'])) ? (int) $_REQUEST['page'] : 1;
+        $page--;
+        $pnum = config('app.html_paginate');
+        $files = Html::getAll();
+        $filenum = count($files);        
+        $arr = array_chunk($files, $pnum);
+        $paginator = new LengthAwarePaginator($arr[$page], $filenum, $pnum);
         return view('html.index', [
-            'files' => Html::getAll(),
+            'files' => $paginator->withPath('html'),
         ]);
     }
 

@@ -15,7 +15,7 @@
     <div class="col-md-9">
         <div class="row"><a href="/html/create" class="btn btn-success float-right my-3" title="{{__('admin.new html')}}">{{__('admin.new html')}}</a></div>
     </div>
-    <div class="card-columns">
+<div class="card-columns">
 @foreach($files as $file)
         <div class="card mb-3">
             <div class="card-body">
@@ -48,6 +48,7 @@
   </div>
 </div>
 @endforeach
-    </div>
 </div>
+</div>
+<div class="flex-center">{{ $files->links() }}</div>
 @endsection

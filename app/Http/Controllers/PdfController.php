@@ -6,6 +6,7 @@ use App\Pdf;
 use App\Http\Requests\CreatePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PdfController extends Controller
 {
@@ -16,6 +17,8 @@ class PdfController extends Controller
      */
     public function index()
     {
+        $page = (isset($_REQUEST['page'])) ? (int) $_REQUEST['page'] : 1;
+        $page--;        
         $pdffiles = array();
         $files = Storage::files('public/pdf');
         foreach($files as $file) {
@@ -23,8 +26,12 @@ class PdfController extends Controller
                 $pdffiles[] = new Pdf(pathinfo($file)['basename']);
             }
         }
+        $pnum = config('app.pdf_paginate');
+        $filenum = count($pdffiles);        
+        $arr = array_chunk($pdffiles, $pnum);
+        $paginator = new LengthAwarePaginator($arr[$page], $filenum, $pnum);
         return view('pdf', [
-            'pdffiles' => $pdffiles,
+            'pdffiles' => $paginator->withPath('/pdf'),
         ]);
     }
 

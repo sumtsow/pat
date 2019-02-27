@@ -18,7 +18,7 @@
                     @endif
                     <a href="/users"><h4>{{ __('admin.user admin') }}</h4></a>
                     <a href="html"><h4>{{ __('admin.HTML admin') }}</h4></a>
-                    <a href="pdf/index"><h4>{{ __('admin.PDF pages admin') }}</h4></a>
+                    <a href="pdf"><h4>{{ __('admin.PDF pages admin') }}</h4></a>
                     <a href="html/navigation/edit"><h4>{{ __('admin.navbar admin') }}</h4></a>
                     <a href="me"><h4>{{ __('admin.change my password') }}</h4></a>
                 </div>

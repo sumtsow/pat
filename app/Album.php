@@ -14,7 +14,7 @@ class Album
     // @string path to Album directory in Storage directory
     private $storagePath;
     
-    // @string array Album title, keys are locale's names, e.g. 'en', 'ua', 'ru'
+    // @string array Album title, keys are locale's names, e.g. 'en', 'uk', 'ru'
     private $title;
     
     // @string Album directory

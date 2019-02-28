@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('scripts')
-    <script src="{{ asset('js/swfobject.js') }}" type="text/javascript" language="javascript"></script>
-    <script src="{{ asset('js/swf.js') }}" type="text/javascript" language="javascript"></script>
+    <script src="{{ asset('js/swfobject.js') }}"></script>
+    <script src="{{ asset('js/swf.js') }}"></script>
 @endsection
 
 @section('content')

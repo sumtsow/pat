@@ -47,7 +47,7 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function locale($locale = 'ua')
+    public function locale($locale = 'uk')
     {
         if (!in_array($locale, config('app.locales'))) {
             $locale = app()->getLocale();

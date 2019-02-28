@@ -24,7 +24,7 @@
     <div class="col-sm-1"></div>
     <div class="container-fluid">
     <div class="card w-100 my-3" id="logo">
-        <img class="card-image rounded w-100" src="/img/title_{{app()->getLocale()}}.jpg" />
+        <img class="card-image rounded w-100" src="/img/title_{{app()->getLocale()}}.jpg" alt="title" />
         <div class="card-img-overlay p-0">
             <div class="d-flex align-items-end justify-content-end h-100">
                 <ul class="my-0 mx-3" id="lang">

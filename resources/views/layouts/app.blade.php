@@ -52,7 +52,7 @@
         </div>
         <div class="card col-sm-9 border-0 pl-3 pr-0 bg-transparent">
             <div class="card-header m-0 p-0 border-0" id="breadcrumbs">
-                <nav class="nav my-0 py-0" area-label="breadcrumb">
+                <nav class="nav my-0 py-0">
                     <ol class="breadcrumb m-0 text-truncate">
                         <li class="breadcrumb-item"><a href="/">{{ __('pagination.Main')}}</a></li>
                         @yield('breadcrumb')

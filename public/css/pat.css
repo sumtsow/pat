@@ -155,3 +155,12 @@ body {
 .table-sm td, .table-sm a,  .table-sm th {
     font-size: 0.78rem;
 }
+
+.checkmark li {
+    list-style-type: none;
+}
+
+.checkmark li:before {
+    content:"\2713\0020";
+}
+

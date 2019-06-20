@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Album;
 use App\Http\Requests\UpdateAlbum;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreatePhoto;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AlbumController extends BaseController
 {
@@ -20,13 +19,19 @@ class AlbumController extends BaseController
      */
     public function index()
     {
-        $albums = array();
-        $dirs = Storage::directories('/public/img/gallery');
-        foreach($dirs as $dir) {
-            $albums[] = new Album(pathinfo($dir)['basename']);
+        $photos = array();
+        $page = (isset($_REQUEST['page'])) ? (int) $_REQUEST['page'] : 1;
+        $page--;
+        foreach(Storage::directories('/public/img/gallery') as $dir) {
+            $album = new Album(pathinfo($dir)['basename']);
+            $photos = array_merge($photos, $album->getPhotos());
         }
-        return view('gallery', [
-            'albums' => $albums,
+        $pnum = config('app.photo_paginate');
+        $filenum = count($photos);        
+        $arr = array_chunk($photos, $pnum);
+        $paginator = new LengthAwarePaginator($arr[$page], $filenum, $pnum);
+        return view('photos', [
+            'photos' => $paginator->withPath('/photos'),
         ]);
     }
 
@@ -85,7 +90,7 @@ class AlbumController extends BaseController
         foreach($locales as $locale) {
             $album->setTitle($locale, $request->$locale);
         }
-        return redirect('/gallery');
+        return redirect()->route('gallery');
     }
 
     /**
@@ -98,7 +103,7 @@ class AlbumController extends BaseController
     {
         $album = new Album($dir);
         $album->delete();
-        return redirect('/gallery');
+        return redirect()->route('gallery');
     }
 
     /**
@@ -111,7 +116,7 @@ class AlbumController extends BaseController
     {
         $album = new Album($dir);
         $album->rmPhoto($photo);
-        return redirect('/gallery/'.$album->__get('dir'));
+        return redirect()->route('gallery');
     }
 
     /**
@@ -124,7 +129,7 @@ class AlbumController extends BaseController
     {
         $album = new Album($request->dir);
         $album->addPhoto($request);
-        return redirect('/gallery/'.$album->__get('dir'));
+        return redirect()->route('gallery');
     }
     
 }

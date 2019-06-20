@@ -20,7 +20,8 @@ Route::get('/', 'Controller@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('can:admin, App\User')->middleware('verified');
 
 // Albums List
-Route::get('/gallery', 'AlbumController@index')->name('gallery');
+//Route::get('/gallery', 'AlbumController@index')->name('gallery');
+Route::get('/photos', 'AlbumController@index')->name('gallery');
 
 // Album view
 Route::get('/gallery/{album}', 'AlbumController@show')->name('album');

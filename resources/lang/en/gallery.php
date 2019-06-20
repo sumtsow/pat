@@ -25,4 +25,5 @@ return [
     'yes' => 'Yes',
     'warning' => 'Warning',
     'new photo' => 'New photo',
+    'Photo Album' => 'Photo Gallery',
 ];

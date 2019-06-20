@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>{{ config('app.title.ru')}}</title>
+    <title>{{ config('app.title.uk')}}</title>
     <meta name="keywords" content="{{config('app.keywords')}}" />
     <meta name="description" content="{{config('app.description')}}" />
     <meta charset="utf-8" />
@@ -23,18 +23,13 @@
 <div class="container">
     <div class="col-sm-1"></div>
     <div class="container-fluid">
-    <div class="card w-100 my-3" id="logo">
-        <img class="card-image rounded w-100" src="/img/title_{{app()->getLocale()}}.jpg" alt="title" />
-        <div class="card-img-overlay p-0">
-            <div class="d-flex align-items-end justify-content-end h-100">
-                <ul class="my-0 mx-3" id="lang">
-                @foreach(config('app.locales') as $locale)
-                    <li class="d-inline ml-auto mr-2 rounded-md"><a href="/setlocale/{{ $locale }}" class="btn text-dark text-shadow {{ $locale }} border-0">{{ $locale }}</a></li>
-                @endforeach
-                </ul>
+        <div class="row mx-1 my-3">
+            <div class="col d-flex p-0 border-dark justify-content-end" id="logo"style="background-size:  100% 100% !important; background: url('/img/title_{{app()->getLocale()}}.jpg') no-repeat; min-height: 12vh">
+                <a href="http://nuph.edu.ua" target="_blank">
+                    <div class="float-right h-100 my-auto" style="background-size: contain !important; background: url('/img/nphau_logo.png') no-repeat; min-width: 11vh"></div>
+                </a>    
             </div>
         </div>
-    </div>
     <div class="row mx-1">
         @include('carousel') 
     </div>
@@ -76,7 +71,8 @@ target="_blank" rel="nofollow"><img src="//mc.yandex.ru/informer/24685271/1_1_78
 style="width:80px; height:15px; border:0; margin: -8px 10px 0 0" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" onclick="try{Ya.Metrika.informer({i:this,id:24685271,lang:'ru'});return false}catch(e){}"/></a>
 <!-- /Yandex.Metrika informer -->
 @endcan
-                        <small>{{ config('app.title.'.app()->getLocale())}}, 2015-{{date('Y')}}</small>
+                        <span class="align-middle"><small>{{ config('app.title.'.app()->getLocale())}}, 2015-{{date('Y')}}</small></span>
+                        <a href="https://www.facebook.com/profile.php?id=100037358588358" target="_blank" label="facebook"><img class="float-right ml-3" width="32px" height="32px" src="/img/facebook.png" alt="facebook" /></a>
                     </div>
                 </div>
             </div>
@@ -86,7 +82,7 @@ style="width:80px; height:15px; border:0; margin: -8px 10px 0 0" alt="Яндек
     <div class="col-sm-1"></div> 
 </div>
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
+<script>
 (function (d, w, c) {
     (w[c] = w[c] || []).push(function() {
         try {

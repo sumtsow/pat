@@ -233,7 +233,7 @@ return [
     'title' => [
         'uk' => 'Кафедра патологічної фізіології',
         /*'en' => 'Department of Pathologic Physiology',*/    
-        'ru' => 'Кафедра патологической физиологии',
+        /*'ru' => 'Кафедра патологической физиологии',*/
 
     ],
     
@@ -241,15 +241,16 @@ return [
     
     'imagetypes' => ['jpg', 'jpeg', 'png'],
     
-    'locales' => ['uk', 'ru'], /* 'en', */
+    'locales' => ['uk'], /*, 'en', 'ru' */
     
     'timeformat' => [
         'uk' => 'uk_UA.UTF-8',
-        'ru' => 'ru_RU.UTF-8',        
-        /*'en' => 'en_US.UTF-8',*/
+        /*'ru' => 'ru_RU.UTF-8',        
+        'en' => 'en_US.UTF-8',*/
     ],
     
     'paginate' => 10,
     'html_paginate' => 24,
     'pdf_paginate' => 15,
+    'photo_paginate' => 20,    
 ];

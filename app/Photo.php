@@ -22,7 +22,7 @@ class Photo
     // @string filename exclude extension
     private $filename;
     
-    // @string filename exclude extension
+    // @string file extension
     private $extension;
     
     // @string Album directory

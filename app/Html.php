@@ -103,12 +103,16 @@ class Html
         foreach($htmlFiles as $filename) {
             $htmlFile = new Html(app()->getLocale(), pathinfo($filename)['filename']);
             $haystack = strip_tags($htmlFile->content);
-            $pos = mb_stripos($haystack, $row);
+            mb_ereg_search_init($haystack);
+            $pos = mb_ereg_search_pos($row, 'i');
             if(false !== $pos && 'navigation' !== pathinfo($filename)['filename']) {
                 $found['filename'] = $filename;
-                $foundStr = mb_substr($haystack, $pos, 100);
-                $replacement = '<span class="bg-dark text-light">'.$row.'</span>';
-                $found['string'] = str_ireplace($row, $replacement, mb_strtolower($foundStr));
+                $len = 100;
+                $start = ($pos[0] < $len) ? 0 : $pos[0] - $len + 1;
+                $foundStr = mb_strcut($haystack, $start, $pos[1] + 2*$len);
+                $foundRow = mb_strcut($haystack, $pos[0], $pos[1]);
+                $replacement = '<span class="bg-dark text-light">'.$foundRow.'</span>';
+                $found['string'] = str_ireplace($foundRow, $replacement, $foundStr);
                 array_push($results, $found);
             }
         }

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use App\Html;
+use App\Pdf;
 
 class Controller extends BaseController
 {
@@ -65,9 +66,11 @@ class Controller extends BaseController
         if(empty($request->search)) {
             return redirect()->back();
         }
-        
+        $results = Html::search($request->search);
+        $results2 = Pdf::search($request->search);
         return view('search', [
-            'results' => Html::search($request->search),
+            'results' => $results,
+            'results2' => $results2,
             'search' => $request->search,
         ]);
     }

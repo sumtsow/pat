@@ -58,6 +58,17 @@ class Pdf
         return $this->$property;
     }
     
+    // Return pdf file content
+    // @property magic function __get('property')
+    public function getContent() 
+    {
+        $content = false;
+        if(file_exists($this->storagePath)) {
+            $content = file_get_contents($this->storagePath);
+        }
+        return $content;
+    }
+    
     // Add new pdf file
     // @param  \Illuminate\Http\Request  $request
     public function addFile(CreatePdf $request) 
@@ -72,4 +83,27 @@ class Pdf
     {
         return \Storage::delete($this->storagePath);
     }
+    
+    public static function search($row) {
+        $results = array();
+        $pdfFiles = Storage::files('public/pdf');
+        /*foreach($pdfFiles as $filename) {
+            $pdfFile = new Pdf(pathinfo($filename)['filename']);
+            $haystack = strip_tags($pdfFile->getContent());
+            var_dump($haystack);
+            mb_ereg_search_init($haystack);
+            $pos = mb_ereg_search_pos($row, 'i');
+            if(false !== $pos && 'navigation' !== pathinfo($filename)['filename']) {
+                $found['filename'] = $filename;
+                $len = 100;
+                $start = ($pos[0] < $len) ? 0 : $pos[0] - $len + 1;
+                $foundStr = mb_strcut($haystack, $start, $pos[1] + 2*$len);
+                $foundRow = mb_strcut($haystack, $pos[0], $pos[1]);
+                $replacement = '<span class="bg-dark text-light">'.$foundRow.'</span>';
+                $found['string'] = str_ireplace($foundRow, $replacement, $foundStr);
+                array_push($results, $found);
+            }
+        }*/
+        return $results;
+    }  
 }

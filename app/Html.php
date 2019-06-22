@@ -51,8 +51,7 @@ class Html
                     $this->size = round(Storage::size($this->storagePath)/1024);
                     $this->lastModified = Storage::lastModified($this->storagePath);
                     $this->content = \Storage::get($this->storagePath);
-                    $row = explode("</h1>",$this->content);
-                    $this->pageTitle = html_entity_decode(strip_tags(str_replace('<h1>', '', $row[0])));
+                    $this->pageTitle = html_entity_decode(strip_tags(substr($this->content, 0, strpos($this->content, PHP_EOL)-1)));
                 }
                 else {
                     $this->size = 0;
@@ -96,5 +95,23 @@ class Html
     
     public static function getAll() {
         return Storage::files('/public/html/'.app()->getLocale());
+    }
+    
+    public static function search($row) {
+        $results = array();
+        $htmlFiles = self::getAll();
+        foreach($htmlFiles as $filename) {
+            $htmlFile = new Html(app()->getLocale(), pathinfo($filename)['filename']);
+            $haystack = strip_tags($htmlFile->content);
+            $pos = mb_stripos($haystack, $row);
+            if(false !== $pos && 'navigation' !== pathinfo($filename)['filename']) {
+                $found['filename'] = $filename;
+                $foundStr = mb_substr($haystack, $pos, 100);
+                $replacement = '<span class="bg-dark text-light">'.$row.'</span>';
+                $found['string'] = str_ireplace($row, $replacement, mb_strtolower($foundStr));
+                array_push($results, $found);
+            }
+        }
+        return $results;
     }  
 }

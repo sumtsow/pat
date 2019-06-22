@@ -15,6 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     @yield('scripts')
     <!-- Styles -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pat.css') }}" rel="stylesheet">
     @yield('styles')
@@ -45,14 +46,23 @@
             </nav>
             @include('loginform')
         </div>
-        <div class="card col-sm-9 border-0 pl-3 pr-0 bg-transparent">
-            <div class="card-header m-0 p-0 border-0" id="breadcrumbs">
-                <nav class="nav my-0 py-0">
-                    <ol class="breadcrumb m-0 text-truncate">
+        <div class="card col-9 border-0 pl-3 pr-0 bg-transparent">
+            <div class="card-header d-inline-flex  m-0 p-1 border-0" id="breadcrumbs" style="min-width: 18rem;">
+                <div class="col d-none d-xs-none d-sm-none d-md-block d-lg-block d-xl-block">
+                <nav class="nav my-0 py-0 d-inline">
+                    <ol class="breadcrumb m-0 text-nowrap " style="flex-wrap: nowrap; max-width: 26em;">
                         <li class="breadcrumb-item"><a href="/">{{ __('pagination.Main')}}</a></li>
                         @yield('breadcrumb')
                     </ol>
                 </nav>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                <form method="post" class="form-inline justify-content-end" action="/search" id="search">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" placeholder="{{ __('admin.search') }}" aria-label="Search" name="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                </div>
             </div>
             <div class="card-body justify-content-center">
                 @yield('content')

@@ -252,5 +252,6 @@ return [
     'paginate' => 10,
     'html_paginate' => 24,
     'pdf_paginate' => 15,
-    'photo_paginate' => 20,    
+    'photo_paginate' => 20,
+    'questions' => 30,
 ];

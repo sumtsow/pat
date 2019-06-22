@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('styles')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-@endsection
-
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/home">{{__('auth.Dashboard')}}</a></li>
 <li class="breadcrumb-item">{{ __('admin.HTML admin')}}</li>

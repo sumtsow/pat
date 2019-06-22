@@ -54,6 +54,23 @@ class Controller extends BaseController
         }
         return redirect()->back()->cookie('locale', $locale, 120); 
     }
+        
+    /**
+     * Return searching results.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if(empty($request->search)) {
+            return redirect()->back();
+        }
+        
+        return view('search', [
+            'results' => Html::search($request->search),
+            'search' => $request->search,
+        ]);
+    }
     
     /**
      * Does student's test.
@@ -64,7 +81,7 @@ class Controller extends BaseController
     public function test(Request $request)
     {
         if(empty($questions = $request->questions)) {
-            $questions = 30;
+            $questions = config('app.questions');;
         }
         $path = 'storage/html/tests/'.$request->page.'.html';
         $doc = simplexml_load_file($path);

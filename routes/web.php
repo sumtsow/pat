@@ -95,6 +95,9 @@ Route::put('/passwd', 'UserController@savepasswd')->middleware('auth')->middlewa
 // Test attempt
 Route::get('/test', 'Controller@test')->name('test');
 
+// Search results
+Route::post('/search', 'Controller@search')->name('search');
+
 // Album Create Form page
 Route::get('/album/create', 'AlbumController@create')->middleware('can:admin, App\User')->middleware('verified');
 

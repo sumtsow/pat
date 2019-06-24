@@ -102,7 +102,7 @@ class Html
         $htmlFiles = self::getAll();
         foreach($htmlFiles as $filename) {
             $htmlFile = new Html(app()->getLocale(), pathinfo($filename)['filename']);
-            $haystack = strip_tags($htmlFile->content);
+            $haystack = strip_tags(html_entity_decode($htmlFile->content));
             mb_ereg_search_init($haystack);
             $pos = mb_ereg_search_pos($row, 'i');
             if(false !== $pos && 'navigation' !== pathinfo($filename)['filename']) {

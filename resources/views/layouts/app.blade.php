@@ -24,11 +24,11 @@
 <div class="container">
     <div class="col-sm-1"></div>
     <div class="container-fluid">
-        <div class="row mx-1 my-3">
-            <div class="col d-flex p-0 border-dark justify-content-end" id="logo"style="background-size:  100% 100% !important; background: url('/img/title_{{app()->getLocale()}}.jpg') no-repeat; min-height: 12vh">
-                <a href="http://nuph.edu.ua" target="_blank">
-                    <div class="float-right h-100 my-auto" style="background-size: contain !important; background: url('/img/nphau_logo.png') no-repeat; min-width: 11vh"></div>
-                </a>    
+        <div class="card mx-1 my-3 border-dark">
+            <img src="{{ url('/img/title_'.app()->getLocale().'.jpg') }}" class="card-img rounded" alt="title">
+            <div class="card-img-overlay p-0">
+                <a href="{{ route('index') }}" class="card-text d-block h-100 float-left m-0" style="width: 11%">&nbsp;</a>
+                <a href="http://nuph.edu.ua/" target="_blank" class="card-text d-block h-100 float-right m-0" style="width: 11%">&nbsp;</a>
             </div>
         </div>
     <div class="row mx-1">

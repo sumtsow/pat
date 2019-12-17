@@ -3021,7 +3021,7 @@
                 "symfony/lock": "~3.4|~4.0",
                 "symfony/mailer": "^4.3",
                 "symfony/messenger": "^4.3",
-                "symfony/mime": "^4.3",
+                "symfony/mime": "^4.3.8",
                 "symfony/polyfill-intl-icu": "~1.0",
                 "symfony/process": "~3.4|~4.0",
                 "symfony/property-info": "~3.4|~4.0",
